@@ -20,7 +20,7 @@ def create_connection(db_file):
     return conn
 
 
-def main():
+def create_dataframe():
     database = "./database/LLDatabase.db"
 
     # create a database connection
@@ -42,21 +42,23 @@ def main():
 
     df_vote_merge = pd.merge(df_vote, df_voter_position, on=["user_id"])
     df_vote_merge = df_vote_merge.drop_duplicates()
-    # print(df_vote_merge)
     df_vote_merge.insert(7, "commented", 0)
-    # print(df_vote_merge)
 
+    # df_comment.reset_index()
     for index, row in df_comment.iterrows():
         post_id = row["comment_target"]
         user_id = row["commenter"]
-        print(user_id, post_id)
+        # print(user_id, post_id)
         df_vote_merge["commented"] = np.where((df_vote_merge.post_id == post_id) & (df_vote_merge.user_id == user_id), 1, df_vote_merge.commented)
+    df_vote_merge = df_vote_merge.reset_index(drop=True)
     print(df_vote_merge.to_string())
+
 
     # data2_count = df_vote_merge.groupby(['vote_id', 'ItemId']).agg({'Timestamp': 'count'}).reset_index()
     # data2_count.columns = ['UserId', 'ItemId', 'Affinity']
     conn.close()
+    return df_vote_merge
 
 
 if __name__ == '__main__':
-    main()
+    create_dataframe()
