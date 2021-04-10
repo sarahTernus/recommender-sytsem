@@ -32,32 +32,34 @@ def create_dataframe():
 
     df_voter_position = pd.read_sql_query("SELECT user_id, latitude, longitude FROM user, vote WHERE user_id = voter",
                                           conn)
-    # print(df_voter_position)
 
-    # create comment
     df_comment = pd.read_sql_query("SELECT commenter, comment_target FROM comment, vote "
                                    "WHERE comment_target = vote_target AND commenter = voter", conn)
-    # df_comment = df_vote.rename(columns={'comment_target': 'post_id', 'commenter': 'user_id'})
     # print(df_comment)
 
     df_vote_merge = pd.merge(df_vote, df_voter_position, on=["user_id"])
     df_vote_merge = df_vote_merge.drop_duplicates()
     df_vote_merge.insert(7, "commented", 0)
 
-    # df_comment.reset_index()
-    for index, row in df_comment.iterrows():
-        post_id = row["comment_target"]
-        user_id = row["commenter"]
-        # print(user_id, post_id)
-        df_vote_merge["commented"] = np.where((df_vote_merge.post_id == post_id) & (df_vote_merge.user_id == user_id), 1, df_vote_merge.commented)
     df_vote_merge = df_vote_merge.reset_index(drop=True)
-    # print(df_vote_merge.to_string())
+    index = 0
+    for index_comment, row_comment in df_comment.iterrows():
+        post_id = row_comment["comment_target"]
+        user_id = row_comment["commenter"]
+        df_vote_merge["commented"] = np.where((df_vote_merge.post_id == post_id) & (df_vote_merge.user_id == user_id), 1, df_vote_merge.commented)
+        """for index, row in df_vote_merge.iterrows():
+            if row["post_id"] == post_id and row["user_id"] == user_id:
+                df_vote_merge.loc[index, "commented"] = 1
+            index = index + 1"""
+
+    print(df_vote_merge.to_string())
+
 
     df_reduced = df_vote_merge
     df_reduced.drop('longitude', inplace=True, axis=1)
     df_reduced.drop('latitude', inplace=True, axis=1)
     df_reduced.drop('vote_time', inplace=True, axis=1)
-    # print(df_reduced.to_string())
+    # print(df_reduced)
 
     conn.close()
     return df_vote_merge, df_reduced

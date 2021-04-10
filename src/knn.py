@@ -10,7 +10,7 @@ def main():
     # To use item-based cosine similarity
     sim_options = {
         "name": "cosine",
-        "user_based": False,  # Compute  similarities between users
+        "user_based": True,  # Compute  similarities between users
     }
 
     algo = KNNWithMeans(sim_options=sim_options)
