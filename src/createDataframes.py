@@ -51,14 +51,41 @@ def create_dataframe():
         # print(user_id, post_id)
         df_vote_merge["commented"] = np.where((df_vote_merge.post_id == post_id) & (df_vote_merge.user_id == user_id), 1, df_vote_merge.commented)
     df_vote_merge = df_vote_merge.reset_index(drop=True)
-    print(df_vote_merge.to_string())
+    # print(df_vote_merge.to_string())
 
+    df_reduced = df_vote_merge
+    df_reduced.drop('longitude', inplace=True, axis=1)
+    df_reduced.drop('latitude', inplace=True, axis=1)
+    df_reduced.drop('vote_time', inplace=True, axis=1)
+    # print(df_reduced.to_string())
 
-    # data2_count = df_vote_merge.groupby(['vote_id', 'ItemId']).agg({'Timestamp': 'count'}).reset_index()
-    # data2_count.columns = ['UserId', 'ItemId', 'Affinity']
     conn.close()
-    return df_vote_merge
+    return df_vote_merge, df_reduced
+
+
+def rating_reduced():
+    df, df_reduced = create_dataframe()
+    df_reduced.insert(5, "rating", 0)
+
+    for index, row in df_reduced.iterrows():
+        vote_value = row["vote_value"]
+        commented = row["commented"]
+        if vote_value == 0 and commented == 1:
+            row["rating"] = 1
+        if vote_value == 0 and commented == 0:
+            row["rating"] = 2
+        if vote_value == 1 and commented == 0:
+            row["rating"] = 3
+        if vote_value == 1 and commented == 1:
+            row["rating"] = 4
+    # print(df_reduced.to_string())
+    df_reduced.drop('vote_value', inplace=True, axis=1)
+    df_reduced.drop('commented', inplace=True, axis=1)
+    df_reduced.drop('vote_id', inplace=True, axis=1)
+    # print(df_reduced)
+
+    return df_reduced
 
 
 if __name__ == '__main__':
-    create_dataframe()
+    df_rating_reduced = rating_reduced()

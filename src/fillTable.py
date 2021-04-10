@@ -118,8 +118,8 @@ def main():
         create_category(conn, category5)
 
         # groessen-variablen um datensatzgroesse zu beeinflussen
-        location_cluster = 5
-        locations_per_cluster = 5
+        location_cluster = 1000
+        locations_per_cluster = 10
         # groesste moegliche useranzahl
         user_count = location_cluster*locations_per_cluster
         max_num_votes = 20
