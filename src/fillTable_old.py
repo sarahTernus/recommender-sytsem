@@ -118,7 +118,7 @@ def main():
         create_category(conn, category5)
 
         # groessen-variablen um datensatzgroesse zu beeinflussen
-        location_cluster = 10
+        location_cluster = 500
         locations_per_cluster = 10
         # groesste moegliche useranzahl
         user_count = location_cluster*locations_per_cluster
@@ -131,7 +131,6 @@ def main():
 
             # calculates a random float between 0.01 and 0.1 to fake 10 users at a similar location
             for j in range(locations_per_cluster):
-                # !creating USERs!
                 name = faker.name()
                 random_distance_long = randrange(10)/100
                 random_distance_lat = randrange(10)/100
@@ -142,63 +141,46 @@ def main():
                 user_id = create_user(conn, user)
                 print(user_id)
 
-                # !creating POSTs!
-                # generate title, timestamp and description with faker functions
+                # titel, zeitpunkt und beschreibung mit entsprechender faker funktion erstellen
                 timestamp = faker.date_this_decade()
                 title = faker.word()
                 description = faker.paragraph()
-                # a random number of votes per post (maximus defined through max_num_votes)
+                # muss entsprechend vielen vote datenbankelemente erzeugen
                 votes = randrange(max_num_votes)
-                # generate a random number which represents the user_id of the user who voted
-                # randrage(100) represents 0-99 -> excludes value and starts at 0 if not defined differently
-                # randint includes both values
-                author = randint(1, user_count)
-                # a random number is generated that represents the category ID -> choose category of post
-                category = randint(1, 5)
+                # es wird eine zufällige user_ID zugeodnet entsprechend der User Anzahl
+                # randrage(100) geht von 0-99 also als grenzen 1 und 101 festlegen
+                author = randrange(1, user_count+1)
+                # es wird eine der Kategorie_ID's zufällig gewählt
+                category = randrange(1, 6)
                 post = (timestamp, title, description, votes, author, category)
                 post_id = create_post(conn, post)
 
-                # !creating VOTES!
-                # put users into a LIST and shuffle them so a user can only vote 1 time
-                # user_count + 1 because number would be excluded
+                # user in Liste packen und diese vermischen -> user kann post nur 1x voten
                 choices = list(range(1, user_count + 1))
                 random.shuffle(choices)
-                # save the voter and vote_target to increase the posts that got voted AND commented on by users
-                number_frequency = randint(1, 5)
-                # generate votes corresponding to the number of votes set in POSTS
-                for k in range(votes):
 
+                # entsprechende anzahl an votes, wie zuvor fuer post generiert wurden, wird erzeugt
+                for k in range(votes):
                     vote_value = randint(0, 1)
                     vote_time = faker.date_this_decade() #sollte neuer als post sein
                     voter = choices.pop()
-
                     vote_target = post_id
-
-                    if number_frequency == 1:
-                        person = voter
-                        # print("person-voter=" + format(person))
 
                     vote = (vote_value, vote_time, voter, vote_target)
                     create_vote(conn, vote)
 
-                    # !!! auffällig ist dass Kategorien bei sql ausgabe ab 1 gezählt werden aber ab 0 reingeschrieben werden
+                # !!! auffällig ist dass Kategorien bei sql ausgabe ab 1 gezählt werden aber ab 0 reingeschrieben werden
 
-                    # random number of comments per post
-                    max_comments = randrange(2)
-                    for m in range(max_comments):
-                        content = faker.paragraph()
-                        comment_time = faker.date_this_decade()  # sollte neuer als post sein
+                # zufaellige Anzahl an Kommentaren pro post
+                max_comments = randrange(10)
+                for l in range(max_comments):
+                    content = faker.paragraph()
+                    comment_time = faker.date_this_decade()  # sollte neuer als post sein
+                    commenter = randrange(1, user_count+1)
+                    comment_target = post_id
 
-                        if number_frequency != 1:
-                            commenter = randrange(1, user_count + 1)
-                        else:
-                            commenter = person
-                            print("commenter" + format(commenter))
-
-                        comment_target = post_id
-
-                        comment = (content, comment_time, commenter, comment_target)
-                        create_comment(conn, comment)
+                    comment = (content, comment_time, commenter, comment_target)
+                    create_comment(conn, comment)
 
 
 if __name__ == '__main__':

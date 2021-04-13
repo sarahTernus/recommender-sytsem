@@ -1,0 +1,33 @@
+-> Setzt den Algorithmus "k-Nearest-Neighbor with Means" um:
+   Dies ist ein grundlegender kollaborativer Filteralgorithmus, der die durchschnittlichen Bewertungen
+   der einzelnen Benutzer berücksichtigt.
+
+
+- In diesem Script benutzt wir die Bibilothek "surprise", welche ein Python-Scikit zum
+  Aufbauen und Analysieren von Empfehlungssystemen, welche mit expliziten Bewertungsdaten arbeiten, ist
+
+- Zu Beginn definieren wir uns ein python dictionary
+- Es wird der Algorithmus KNNWithMeans der Surprise Bibilothek genutzt. Um die Ähnlichkeiten zu finden,
+  muss die Funktion KNNWithMeans einfach konfiguriert werden, indem das dictionary als Argument an die
+  Empfehlungsfunktion übergeben wird. Das dictionary sollte die erforderlichen Schlüssel haben:
+        - "name" enthält die zu verwendende Ähnlichkeitsmetrik (z.B. cosine, msd, pearson oder pearson_baseline)
+        - "user_based" ist ein boolescher Wert, der angibt, ob der Ansatz user- oder item-based sein wird.
+        - "min_support" (nicht erforderlich) ist die Mindestanzahl gemeinsamer Elemente,
+           die zwischen Benutzern erforderlich ist, um sie für die Ähnlichkeit zu berücksichtigen.
+           Für den itembasierten Ansatz entspricht dies der Mindestanzahl gemeinsamer Benutzer für zwei Items.
+
+- Zudem wird ein Reader angelegt, bei dem nur die Spanne angegeben wird, in der sich das Rating befinden kann,
+  was in diesem Fall 1-4 ist.
+- Um den Datensatz zu laden, wird die Methode load_from_df() und der zuvor angelegte Reader genutzt.
+  Hierbei muss der dataframe drei Spalten haben: die Benutzer-IDs, Artikel-IDs und die Bewertungen.
+
+- Danach wird der Datensatz in Train- und Testset geteilt, wobei das Testset hierbei 25% der Daten ausmacht.
+- Der Algorithmus wird dann mit den Trainingset trainiert.
+- Für das Testset machen wir predictions, welchen man mit den tatsächlichen Ratings vergleichen und somit überprüfen kann.
+  Die durchschnittliche Genauigkeit der Ergebnisse wird dann mit dem "root mean squared error (rmse)" berechnet.
+
+Quellen: "https://realpython.com/build-recommendation-engine-collaborative-filtering/#the-dataset"
+         "https://surprise.readthedocs.io/en/stable/index.html"
+         "http://surpriselib.com/"
+
+

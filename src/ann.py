@@ -1,4 +1,4 @@
-# import tensorflow as tf
+import tensorflow as tf
 from keras import Sequential, layers
 from src import createDataframes
 

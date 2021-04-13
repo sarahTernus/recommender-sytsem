@@ -40,9 +40,9 @@ def create_dataframe():
     df_vote_merge = pd.merge(df_vote, df_voter_position, on=["user_id"])
     df_vote_merge = df_vote_merge.drop_duplicates()
     df_vote_merge.insert(7, "commented", 0)
-
     df_vote_merge = df_vote_merge.reset_index(drop=True)
-    index = 0
+
+    # index = 0
     for index_comment, row_comment in df_comment.iterrows():
         post_id = row_comment["comment_target"]
         user_id = row_comment["commenter"]
@@ -52,8 +52,7 @@ def create_dataframe():
                 df_vote_merge.loc[index, "commented"] = 1
             index = index + 1"""
 
-    print(df_vote_merge.to_string())
-
+    # print(df_vote_merge.to_string())
 
     df_reduced = df_vote_merge
     df_reduced.drop('longitude', inplace=True, axis=1)
@@ -84,7 +83,7 @@ def rating_reduced():
     df_reduced.drop('vote_value', inplace=True, axis=1)
     df_reduced.drop('commented', inplace=True, axis=1)
     df_reduced.drop('vote_id', inplace=True, axis=1)
-    # print(df_reduced)
+    print(df_reduced)
 
     return df_reduced
 

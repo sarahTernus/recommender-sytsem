@@ -1,0 +1,7 @@
+Der Script "fillTable_old.py" ist fast identisch zu "fillTable.py". Ein Unterschied vefindet sich nur bei der
+Erstellung der Kommentare. In diesem Script werden wie Kommentare unabhängig von den Votes generiert.
+Das heißt es wird eine seperate und keine verschachtelte Schleife durchlaufen und es wird zufällig
+ein User als commenter ausgewählt.
+Da die Ratings 1 oder 4 nur entsteht, wenn sowohl kommentiert als auch gevotet wurde und diese Werte unabhängig
+voneinander zufällig generiert werden kommen diese Bewertungen nur selten vor.
+Um deren Häufigkeit zu erhöhen wurde "fillTable.py" erstellt.

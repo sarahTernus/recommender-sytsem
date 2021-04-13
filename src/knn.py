@@ -32,6 +32,12 @@ def main():
 
     pred = algo.predict(7609, 9886, r_ui=4, verbose=True)
 
+    results = cross_validate(
+        algo=algo, data=data, measures=['RMSE'],
+        cv=5, return_train_measures=True
+    )
+    print(results)
+
 
 if __name__ == '__main__':
     main()
