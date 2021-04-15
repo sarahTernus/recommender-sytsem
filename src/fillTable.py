@@ -97,7 +97,7 @@ def create_vote(conn, vote):
 
 
 def main():
-    database = "./database/LLDatabase.db"
+    database = "./database/interactionFocus.db"
 
     # create a database connection
     conn = create_connection(database)
@@ -118,11 +118,11 @@ def main():
         create_category(conn, category5)
 
         # groessen-variablen um datensatzgroesse zu beeinflussen
-        location_cluster = 10
-        locations_per_cluster = 10
+        location_cluster = 1
+        locations_per_cluster = 100
         # groesste moegliche useranzahl
         user_count = location_cluster*locations_per_cluster
-        max_num_votes = 20
+        max_num_votes = 100
 
         for i in range(location_cluster):
             # faker.local_latlng returns an array with location details like
@@ -173,10 +173,10 @@ def main():
                     voter = choices.pop()
 
                     vote_target = post_id
-
+                    person = 0
                     if number_frequency == 1:
                         person = voter
-                        # print("person-voter=" + format(person))
+                        print("person-voter=", person)
 
                     vote = (vote_value, vote_time, voter, vote_target)
                     create_vote(conn, vote)
@@ -184,7 +184,7 @@ def main():
                     # !!! auffällig ist dass Kategorien bei sql ausgabe ab 1 gezählt werden aber ab 0 reingeschrieben werden
 
                     # random number of comments per post
-                    max_comments = randrange(2)
+                    max_comments = randrange(5)
                     for m in range(max_comments):
                         content = faker.paragraph()
                         comment_time = faker.date_this_decade()  # sollte neuer als post sein

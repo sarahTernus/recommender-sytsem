@@ -31,3 +31,18 @@ Quellen: "https://realpython.com/build-recommendation-engine-collaborative-filte
          "http://surpriselib.com/"
 
 
+
+funktion predict
+    - predict() function:
+    - uid – (Raw) id of the user
+    - iid – (Raw) id of the item
+    - r_ui (float) – The true rating rui. Optional, default is None.
+    - clip (bool) – Whether to clip the estimation into the rating scale. For example,
+      if r^ui is 5.5 while the rating scale is [1,5], then r^ui is set to 5. Same goes if r^ui<1. Default is True.
+    - verbose (bool) – Whether to print details of the prediction. Default is False.
+
+Ausgabe:
+user: 7188  item: 9019   r_ui = '4.00'   est = 3.02   {'actual_k': 11, 'was_impossible': False}
+
+For a given prediction, the actual number of neighbors can be retrieved in
+the 'actual_k' field of the details dictionary of the prediction.

@@ -7,7 +7,7 @@ from surprise import SVD
 import time
 
 
-def main():
+def calculate_predictions_svd():
     reader = Reader(rating_scale=(1, 4))
     df = createDataframes.rating_reduced()
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating']], reader)
@@ -23,9 +23,11 @@ def main():
     print(predict1)
     predict2 = svd_model.predict(uid=27, iid=11)
     print(predict2)
-    predict3 = svd_model.predict(uid=72, iid=79)
+    predict3 = svd_model.predict(uid=27, iid=35)
     print(predict3)
 
 
 if __name__ == '__main__':
-    main()
+    calculate_predictions_svd()
+    top_n = getTopPredictions.get_top_n(calculated_predictions, 10)
+    print(top_n)

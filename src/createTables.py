@@ -20,7 +20,7 @@ def create_connection(db_file):
 
 def create_table(conn, create_table_sql):
     """ create a table from the create_table_sql statement
-    :param conn: Connection object
+    :param conn: Connection object"./database/10.000.db"
     :param create_table_sql: a CREATE TABLE statement
     :return:
     """
@@ -32,7 +32,7 @@ def create_table(conn, create_table_sql):
 
 
 def main():
-    database = "./database/LLDatabase.db"
+    database = "./database/interactionFocus.db"
 
     sql_create_user_table = """CREATE TABLE IF NOT EXISTS user (
                                         user_id integer PRIMARY KEY AUTOINCREMENT,

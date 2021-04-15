@@ -21,7 +21,7 @@ def create_connection(db_file):
 
 
 def create_dataframe():
-    database = "./database/LLDatabase.db"
+    database = "./database/interactionFocus.db"
 
     # create a database connection
     conn = create_connection(database)

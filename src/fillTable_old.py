@@ -97,7 +97,7 @@ def create_vote(conn, vote):
 
 
 def main():
-    database = "./database/LLDatabase.db"
+    database = "./database/10.000.db"
 
     # create a database connection
     conn = create_connection(database)
@@ -118,8 +118,8 @@ def main():
         create_category(conn, category5)
 
         # groessen-variablen um datensatzgroesse zu beeinflussen
-        location_cluster = 500
-        locations_per_cluster = 10
+        location_cluster = 10
+        locations_per_cluster = 1000
         # groesste moegliche useranzahl
         user_count = location_cluster*locations_per_cluster
         max_num_votes = 20
