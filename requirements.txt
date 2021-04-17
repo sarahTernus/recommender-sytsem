@@ -92,3 +92,9 @@ yaml=0.2.5=he774522_0
 yarl=1.6.3=py38h2bbff1b_0
 zipp=3.4.1=pyhd3eb1b0_0
 zlib=1.2.11=h62dcd97_4
+
+tensorflow~=2.3.0
+keras~=2.4.3
+faker~=8.0.0
+pandas~=1.2.3
+numpy~=1.20.2

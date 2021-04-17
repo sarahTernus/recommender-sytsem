@@ -40,7 +40,7 @@ def main():
                                         latitude real,
                                         longitude real,
                                         city text
-                                    ); """
+                                    );"""
 
     sql_create_category_table = """CREATE TABLE IF NOT EXISTS category (
                                     category_id integer PRIMARY KEY AUTOINCREMENT,

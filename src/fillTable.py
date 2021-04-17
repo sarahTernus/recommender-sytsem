@@ -118,11 +118,12 @@ def main():
         create_category(conn, category5)
 
         # groessen-variablen um datensatzgroesse zu beeinflussen
-        location_cluster = 1
+        location_cluster = 10
         locations_per_cluster = 100
         # groesste moegliche useranzahl
         user_count = location_cluster*locations_per_cluster
-        max_num_votes = 100
+        # max_num_votes is max the amout of users, because each user can only vote once per post
+        max_num_votes = 1000
 
         for i in range(location_cluster):
             # faker.local_latlng returns an array with location details like
@@ -148,7 +149,8 @@ def main():
                 title = faker.word()
                 description = faker.paragraph()
                 # a random number of votes per post (maximus defined through max_num_votes)
-                votes = randrange(max_num_votes)
+                """votes = randrange(max_num_votes)"""
+                votes = randint(20, max_num_votes)
                 # generate a random number which represents the user_id of the user who voted
                 # randrage(100) represents 0-99 -> excludes value and starts at 0 if not defined differently
                 # randint includes both values
@@ -164,7 +166,7 @@ def main():
                 choices = list(range(1, user_count + 1))
                 random.shuffle(choices)
                 # save the voter and vote_target to increase the posts that got voted AND commented on by users
-                number_frequency = randint(1, 5)
+                number_frequency = randint(1, 3)
                 # generate votes corresponding to the number of votes set in POSTS
                 for k in range(votes):
 
@@ -184,7 +186,7 @@ def main():
                     # !!! auffällig ist dass Kategorien bei sql ausgabe ab 1 gezählt werden aber ab 0 reingeschrieben werden
 
                     # random number of comments per post
-                    max_comments = randrange(5)
+                    max_comments = randrange(8)
                     for m in range(max_comments):
                         content = faker.paragraph()
                         comment_time = faker.date_this_decade()  # sollte neuer als post sein
