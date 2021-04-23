@@ -4,12 +4,31 @@
 
 
 - In diesem Script benutzt wir die Bibilothek "surprise", welche ein Python-Scikit zum
-  Aufbauen und Analysieren von Empfehlungssystemen, welche mit expliziten Bewertungsdaten arbeiten, ist
+  Aufbauen und Analysieren von Empfehlungssystemen, welche mit expliziten Bewertungsdaten arbeitet
+
+kNN-Algorithmen zur Auswahl:
+- KNNBasic
+- KNNWithMeans
+- KNNWithZScore
+- KNNBaseline
+
+Mögliche Parameter zum Konfigurieren der kNN-Algorithmen:
+k (int) – The (max) number of neighbors to take into account for aggregation. Default is 40.
+min_k (int) – The minimum number of neighbors to take into account for aggregation. If there are not enough neighbors,
+              the neighbor aggregation is set to zero (so the prediction ends up being equivalent to the baseline).
+              Default is 1.
+sim_options (dict) – A dictionary of options for the similarity measure. (With KNNBaseline It is recommended to use
+                     the pearson_baseline similarity measure.)
+only with KNNBaseline -> (bsl_options (dict) – A dictionary of options for the baseline estimates computation.
+                                               See Baselines estimates configuration for accepted options.
+verbose (bool) – Whether to print trace messages of bias estimation, similarity, etc. Default is True.
+
 
 - Zu Beginn definieren wir uns ein python dictionary
 - Es wird der Algorithmus KNNWithMeans der Surprise Bibilothek genutzt. Um die Ähnlichkeiten zu finden,
-  muss die Funktion KNNWithMeans einfach konfiguriert werden, indem das dictionary als Argument an die
-  Empfehlungsfunktion übergeben wird. Das dictionary sollte die erforderlichen Schlüssel haben:
+  kann der Ausgewählte kNN-Algorithmus einfach konfiguriert werden, indem die oben genannten Parameter,
+  insbesondere das dictionary als Argument an die Empfehlungsfunktion übergeben wird.
+  Das dictionary sollte die erforderlichen Schlüssel haben:
         - "name" enthält die zu verwendende Ähnlichkeitsmetrik (z.B. cosine, msd, pearson oder pearson_baseline)
         - "user_based" ist ein boolescher Wert, der angibt, ob der Ansatz user- oder item-based sein wird.
         - "min_support" (nicht erforderlich) ist die Mindestanzahl gemeinsamer Elemente,
@@ -23,14 +42,13 @@
 
 - Danach wird der Datensatz in Train- und Testset geteilt, wobei das Testset hierbei 25% der Daten ausmacht.
 - Der Algorithmus wird dann mit den Trainingset trainiert.
-- Für das Testset machen wir predictions, welchen man mit den tatsächlichen Ratings vergleichen und somit überprüfen kann.
-  Die durchschnittliche Genauigkeit der Ergebnisse wird dann mit dem "root mean squared error (rmse)" berechnet.
+- Für das Testset machen wir predictions, welchen man mit den tatsächlichen Ratings vergleichen und überprüfen kann.
+  Die durchschnittliche Genauigkeit der Ergebnisse kann dann mit verschiedenen Funktionen zur Evaluation
+  (z.B. "root mean squared error (rmse)") berechnet werden.
 
 Quellen: "https://realpython.com/build-recommendation-engine-collaborative-filtering/#the-dataset"
          "https://surprise.readthedocs.io/en/stable/index.html"
          "http://surpriselib.com/"
-
-
 
 funktion predict
     - predict() function:
@@ -41,7 +59,7 @@ funktion predict
       if r^ui is 5.5 while the rating scale is [1,5], then r^ui is set to 5. Same goes if r^ui<1. Default is True.
     - verbose (bool) – Whether to print details of the prediction. Default is False.
 
-Ausgabe:
+Ausgabe-Beispiel:
 user: 7188  item: 9019   r_ui = '4.00'   est = 3.02   {'actual_k': 11, 'was_impossible': False}
 
 For a given prediction, the actual number of neighbors can be retrieved in

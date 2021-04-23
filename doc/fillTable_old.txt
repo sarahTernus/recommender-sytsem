@@ -1,3 +1,5 @@
+!! veraltet !!
+
 Der Script "fillTable_old.py" ist fast identisch zu "fillTable.py". Ein Unterschied vefindet sich nur bei der
 Erstellung der Kommentare. In diesem Script werden wie Kommentare unabhängig von den Votes generiert.
 Das heißt es wird eine seperate und keine verschachtelte Schleife durchlaufen und es wird zufällig

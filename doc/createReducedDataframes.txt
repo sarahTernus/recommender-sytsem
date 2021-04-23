@@ -1,0 +1,6 @@
+-> Stellt eine Verbindung zur durch "CreateReducedTables.py" erstellten Datenbank her und
+   erstellt Dataframes aus den Inhalten der Datenbank
+
+- Zunächst wird ein großer Dataframe mit der user_id, post_id, dem rating_value, dem Zeitpunkt
+des rarings "rating_timestamp", und der standort von user und post erstellt
+- Anschließend wird ein kleinerer Dataframe, welcher nur aus der user_id, post_id und dem rating_value besteht erstellt

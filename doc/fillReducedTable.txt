@@ -1,0 +1,9 @@
+-> Stellt Verbindung zur reduzierten Datenbank her und füllt diese mit Beispiel-/Fülldaten
+
+In diesem Script wird die reduzierte Datenbank, welche nur aus Usern, Posts und den entsprechenden Ratings besteht
+befüllt.
+
+Hierfür werden zunächst User der Menge "user_count" in zufälligen, mit Faker generierten Location Clustern erstellt.
+Anschließend werden entsprechend viele Posts erstellt, wie durch die Variable "post_amount" festgelegt.
+Pro Post wird dann eine zufällige Anzahl an Interaktionen gewählt, und es wird pro Interaktion ein Rating-Wert
+zwischen 1 und 4 zufällig generiert.

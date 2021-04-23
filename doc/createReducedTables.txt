@@ -1,0 +1,6 @@
+-> Erstellt eine Datenbank falls sie noch nicht existiert
+
+- Erstellt die Datenbank Tabellen für:
+        -> user (user_id, long, lat)
+        -> posts (post_id, title, description (Standort long, lat))
+        -> ratings (user_id, post_id, rating_value, rating_timestamp)

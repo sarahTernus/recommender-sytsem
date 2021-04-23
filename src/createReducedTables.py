@@ -43,7 +43,7 @@ def main():
     sql_create_post_table = """CREATE TABLE IF NOT EXISTS post (
                                     post_id integer PRIMARY KEY AUTOINCREMENT,
                                     title text,
-                                    description text
+                                    description text                                    
                                 );"""
 
     sql_create_rating_table = """CREATE TABLE IF NOT EXISTS rating (

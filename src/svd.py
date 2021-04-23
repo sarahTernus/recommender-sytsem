@@ -21,13 +21,13 @@ def calculate_predictions_svd():
 
     accuracy.rmse(predictions)
 
-    predict1 = svd_model.predict(uid=120, iid=48)
+    predict1 = svd_model.predict(uid=1445, iid=1, r_ui=1)
     print(predict1)
-    predict2 = svd_model.predict(uid=120, iid=13)
+    predict2 = svd_model.predict(uid=3819, iid=1, r_ui=2)
     print(predict2)
-    predict3 = svd_model.predict(uid=120, iid=58)
+    predict3 = svd_model.predict(uid=4110, iid=1, r_ui=3)
     print(predict3)
-    predict4 = svd_model.predict(uid=120, iid=18)
+    predict4 = svd_model.predict(uid=4579, iid=100, r_ui=4)
     print(predict4)
 
     return predictions
@@ -37,5 +37,5 @@ if __name__ == '__main__':
     calculated_predictions = calculate_predictions_svd()
     top_n = getTopPredictions.get_top_n(calculated_predictions, 10)
     # print(top_n)
-    for uid, user_ratings in top_n.items():
-        print(uid, [iid for (iid, _) in user_ratings])
+    """for uid, user_ratings in top_n.items():
+        print(uid, [iid for (iid, _) in user_ratings])"""
