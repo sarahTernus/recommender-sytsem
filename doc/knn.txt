@@ -1,4 +1,4 @@
--> Setzt den Algorithmus "k-Nearest-Neighbor with Means" um:
+-> Setzt den Algorithmus "k-Nearest-Neighbor" um:
    Dies ist ein grundlegender kollaborativer Filteralgorithmus, der die durchschnittlichen Bewertungen
    der einzelnen Benutzer berücksichtigt.
 
