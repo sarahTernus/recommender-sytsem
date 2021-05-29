@@ -4,6 +4,7 @@ from faker import Faker
 from random import randrange
 from random import randint
 import random
+import pandas as pd
 
 
 def create_connection(db_file):
@@ -67,24 +68,44 @@ def create_rating(conn, rating):
     return cur.lastrowid
 
 
-def fill_table(conn):
+def create_df():
+    """
+    Create the rating dataframe from the rating.csv and adjust to fit our case
+    :return: df
+    """
 
-    location_cluster = 5
-    locations_per_cluster = 1000
-    # max possible amount of users
-    user_count = location_cluster * locations_per_cluster
-    post_amount = 100
-    max_interactions_per_post = user_count/post_amount
+    df_movie = pd.read_csv("./dataframes/ratings.csv")
+    df_movie = df_movie[(df_movie.rating != 0.5) & (df_movie.rating != 1.5) &
+                        (df_movie.rating != 2.5) & (df_movie.rating != 3.5) & (df_movie.rating != 4.5)]
+    df = df_movie.rename(columns={'movieId': 'postId'}, inplace=False)
+    df.drop('timestamp', inplace=True, axis=1)
+    print(df)
+
+    index = df.index
+    number_of_rows = len(index)
+    print(number_of_rows)
+
+    df = df.head(100000)
+
+    index = df.index
+    number_of_rows = len(index)
+    print(number_of_rows)
+
+    return df, number_of_rows
+
+
+def fill_table(conn):
+    ratings, df_size = create_df();
 
     faker = Faker('de_DE')
+    posts_per_location = 1000000
+    locations = df_size / posts_per_location
 
-    for i in range(location_cluster):
-        # faker.local_latlng returns an array with location details like
-        # ('34.95303', '-120.43572', 'Santa Maria', 'US', 'America/Los_Angeles')
+    # calculates a random float between 0.01 and 0.1 to fake 10 users at a similar location
+    for i in range(locations):
         lat_long = faker.local_latlng(country_code='DE', coords_only=True)
 
-        # calculates a random float between 0.01 and 0.1 to fake 10 users at a similar location
-        for j in range(locations_per_cluster):
+        for j in range(posts_per_location):
             # !creating USERs!
             random_distance_long = randrange(10) / 100
             random_distance_lat = randrange(10) / 100
@@ -92,6 +113,10 @@ def fill_table(conn):
 
             user_id = create_user(conn, user)
             print("user", user_id)
+
+    # sollte aus movielens dataset gelesen werden
+    post_amount = 10
+    user_count = 10
 
     for k in range(post_amount):
         post_title = faker.word()
@@ -115,13 +140,8 @@ def fill_table(conn):
             print("rating", rating_id)
 
 
-def main():
-    # create a database connection and fill database
-    database = "./database/fakeData2.db"
-    conn = create_connection(database)
-    fill_table(conn)
-
-
 if __name__ == '__main__':
-    # df_rating_reduced = main()
-    main()
+    """database = "./database/dataset1.db"
+    conn = create_connection(database)"""
+    create_df()
+    # fill_table(conn)

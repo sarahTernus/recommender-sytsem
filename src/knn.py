@@ -14,7 +14,7 @@ def calculate_predictions_knn():
         "user_based": True,  # Compute  similarities between users
     }
 
-    algo = KNNBaseline(sim_options=sim_options)
+    algo = KNNBaseline(random_state=0, sim_options=sim_options)
 
     reader = Reader(rating_scale=(1, 4))
     df = createReducedDataframes.create_dataframe()
@@ -48,8 +48,8 @@ def calculate_predictions_knn():
     # clip (bool) – Whether to clip the estimation into the rating scale. For example,
     # if r^ui is 5.5 while the rating scale is [1,5], then r^ui is set to 5. Same goes if r^ui<1. Default is True.
     # verbose (bool) – Whether to print details of the prediction. Default is False.
-    neighbours = algo.get_neighbors(1445, 1)
-    print("neighbours:", neighbours)
+    # neighbours = algo.get_neighbors(1445, 1)
+    # print("neighbours:", neighbours)
 
     algo.predict(1445, 1, r_ui=1, verbose=True)
     algo.predict(3819, 1, r_ui=2, verbose=True)

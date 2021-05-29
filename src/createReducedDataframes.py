@@ -37,6 +37,9 @@ def create_dataframe():
 
     conn.close()
 
+    # df_rating.to_pickle("./dataframes/df_reduced_rating_500k.pkl")
+    df_rating.to_csv("./dataframes/df_reduced_rating.csv")
+
     return df_rating
 
 
