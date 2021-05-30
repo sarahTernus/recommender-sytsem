@@ -1,6 +1,6 @@
 import tensorflow as tf
 from keras import Sequential, layers
-from src import createDataframes
+import pandas as pd
 
 
 def create_model():
@@ -14,7 +14,8 @@ def create_model():
 
 
 def main():
-    df = createDataframes.rating_reduced()
+    df = pd.read_csv("datasets/dataset1")
+    # createDataframes.rating_reduced()
     print(df.to_string())
     x = df.iloc[:, 0:2]
     y = df.iloc[:, 2:3]

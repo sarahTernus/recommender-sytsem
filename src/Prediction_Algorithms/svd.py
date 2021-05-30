@@ -1,6 +1,4 @@
-from src import createDataframes
-# from src import getTopPredictions
-from src import createReducedDataframes
+from src import getTopPredictions
 from surprise import KNNWithMeans, Reader, Dataset
 from surprise.model_selection import cross_validate, train_test_split
 from surprise import accuracy
@@ -13,10 +11,10 @@ import random
 
 
 def calculate_predictions_svd():
-    reader = Reader(rating_scale=(1, 4))
+    reader = Reader(rating_scale=(1, 5))
     # df = createReducedDataframes.create_dataframe()
-    df = pd.read_pickle("./dataframes/df_reduced_rating.pkl")
-    data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
+    df = pd.read_csv("../datasets/dataset3.csv")
+    data = Dataset.load_from_df(df[['userId', 'postId', 'rating']], reader)
 
     # data = Dataset.load_builtin('ml-100k')
 
