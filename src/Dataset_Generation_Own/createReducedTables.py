@@ -32,7 +32,7 @@ def create_table(conn, create_table_sql):
 
 
 def main():
-    database = "./database/dataset1.db"
+    database = "../database/dataset-10k-dense.db"
 
     sql_create_user_table = """CREATE TABLE IF NOT EXISTS user (
                                         user_id integer PRIMARY KEY AUTOINCREMENT,
@@ -42,8 +42,8 @@ def main():
 
     sql_create_post_table = """CREATE TABLE IF NOT EXISTS post (
                                     post_id integer PRIMARY KEY AUTOINCREMENT,
-                                    latitude real,
-                                    longitude real                                    
+                                    title sting,
+                                    description string                               
                                 );"""
 
     sql_create_rating_table = """CREATE TABLE IF NOT EXISTS rating (

@@ -8,16 +8,16 @@ def create_df():
     """
 
     df = pd.read_csv("../datasets/ml-datasets/ratings-ml20m.csv")
-    df.columns = ['userId', 'postId', 'rating', 'timestamp']
+    df.columns = ['user_id', 'post_id', 'rating_value', 'timestamp']
 
     """df_movie = df_movie[(df_movie.rating != 0.5) & (df_movie.rating != 1.5) &
                         (df_movie.rating != 2.5) & (df_movie.rating != 4.5)]"""
 
-    df["rating"].replace({0.5: 1}, inplace=True)
-    df["rating"].replace({1.5: 2}, inplace=True)
-    df["rating"].replace({2.5: 2}, inplace=True)
-    df["rating"].replace({3.5: 3}, inplace=True)
-    df["rating"].replace({4.5: 3}, inplace=True)
+    df["rating_value"].replace({0.5: 1}, inplace=True)
+    df["rating_value"].replace({1.5: 2}, inplace=True)
+    df["rating_value"].replace({2.5: 2}, inplace=True)
+    df["rating_value"].replace({3.5: 3}, inplace=True)
+    df["rating_value"].replace({4.5: 3}, inplace=True)
 
     df.drop('timestamp', inplace=True, axis=1)
     df.drop_duplicates()

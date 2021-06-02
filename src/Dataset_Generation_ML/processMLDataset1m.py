@@ -8,7 +8,14 @@ def create_df():
     """
 
     df = pd.read_csv("../datasets/ml-datasets/ratings-ml100k.csv")
-    df.columns = ['userId', 'postId', 'rating', 'timestamp']
+    df.columns = ['user_id', 'post_id', 'rating_value', 'timestamp']
+
+    df["rating_value"].replace({3.0: 7.0}, inplace=True)
+    df["rating_value"].replace({4.0: 3.0}, inplace=True)
+    df["rating_value"].replace({7.0: 4.0}, inplace=True)
+    df["rating_value"].replace({5.0: 8.0}, inplace=True)
+    df["rating_value"].replace({2.0: 5.0}, inplace=True)
+    df["rating_value"].replace({8.0: 2.0}, inplace=True)
 
     df.drop('timestamp', inplace=True, axis=1)
     df.drop_duplicates()
@@ -20,21 +27,17 @@ def create_df():
     number_of_rows = len(index)
     print(number_of_rows)
 
-    """df_size = 10000
-    df = df.head(df_size)
+    """df_size = 1000
+    df = df.tail(df_size)
 
     index = df.index
     number_of_rows = len(index)
     print(number_of_rows)"""
 
-    df.to_csv("../datasets/dataset3b.csv")
+    df.to_csv("../datasets/dataset-100k-movielens.csv")
 
     return df, number_of_rows
 
 
 if __name__ == '__main__':
     dataset, dataset_size = create_df()
-
-
-
-

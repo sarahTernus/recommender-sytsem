@@ -14,7 +14,7 @@ def create_model():
 
 
 def main():
-    df = pd.read_csv("datasets/dataset1")
+    df = pd.read_csv("../datasets/dataset3.csv")
     # createDataframes.rating_reduced()
     print(df.to_string())
     x = df.iloc[:, 0:2]
@@ -23,9 +23,9 @@ def main():
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(x, y, batch_size=32, epochs=12, validation_split=0.2, shuffle=True)
 
-    predictions = model.predict(x)
+    """predictions = model.predict(x)
     rounded = [round(x[0]) for x in predictions]
-    print(rounded)
+    print(rounded)"""
 
 
 if __name__ == '__main__':
