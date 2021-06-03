@@ -1,18 +1,20 @@
-from src import getTopPredictions
-from surprise import KNNWithMeans, Reader, Dataset
-from surprise.model_selection import cross_validate, train_test_split
-from surprise import accuracy
-from surprise import SVD
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
+
+from tabulate import tabulate
+from six import iteritems
+
+from surprise import SVD, Reader
 import pandas as pd
+from surprise import Dataset
 from surprise.model_selection import GridSearchCV
-import random
 
 
-def get_grid_search():
+"""def get_grid_search():
     reader = Reader(rating_scale=(1, 5))
     # df = createReducedDataframes.create_dataframe()
-    df = pd.read_csv("../datasets/dataset3.csv")
-    data = Dataset.load_from_df(df[['userId', 'postId', 'rating']], reader)
+    df = pd.read_csv("../datasets/dataset-100k-movielens.csv")
+    data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
 
     raw_ratings = data.raw_ratings
     random.shuffle(raw_ratings)
@@ -47,4 +49,34 @@ def get_grid_search():
     predictions = algo.test(testset)
     print('Unbiased accuracy on B,', end=' ')
     accuracy.rmse(predictions)
-    accuracy.mae(predictions)
+    accuracy.mae(predictions)"""
+
+if __name__ == '__main__':
+    reader = Reader(rating_scale=(1, 5))
+    df = pd.read_csv("../datasets/dataset-100k-movielens.csv")
+    data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
+
+    param_grid = {'n_epochs': [5, 10], 'lr_all': [0.002, 0.005],
+                  'reg_all': [0.4, 0.6]}
+    gs = GridSearchCV(SVD, param_grid, measures=['rmse', 'mae'], cv=3)
+
+    gs.fit(data)
+
+    table = [[] for _ in range(len(gs.cv_results['params']))]
+    for i in range(len(gs.cv_results['params'])):
+        for key in gs.cv_results.keys():
+            table[i].append(gs.cv_results[key][i])
+
+    header = gs.cv_results.keys()
+    print(tabulate(table, header, tablefmt="rst"))
+
+    print()
+
+    for key, val in iteritems(gs.cv_results):
+        print('{:<20}'.format("'" + key + "':"), end='')
+        if isinstance(val[0], float):
+            print([float('{:.2f}'.format(f)) for f in val])
+        else:
+            print(val)
+
+
