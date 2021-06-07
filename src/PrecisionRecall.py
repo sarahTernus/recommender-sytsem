@@ -1,10 +1,5 @@
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
+from __future__ import (absolute_import, division, print_function, unicode_literals)
 from collections import defaultdict
-import pandas as pd
-from surprise import Dataset
-from surprise import SVD, Reader, KNNBasic
-from surprise.model_selection import KFold
 
 
 def precision_recall_at_k(predictions, k=10, threshold=3.5):
@@ -44,24 +39,4 @@ def precision_recall_at_k(predictions, k=10, threshold=3.5):
 
     return precisions, recalls
 
-
-if __name__ == '__main__':
-    reader = Reader(rating_scale=(1, 5))
-    df = pd.read_csv("./datasets/dataset-100k-equal.csv")
-    data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
-    # data = Dataset.load_builtin('ml-1m')
-
-    kf = KFold(n_splits=5)
-    algo = SVD()
-
-    for trainset, testset in kf.split(data):
-        algo.fit(trainset)
-        predictions = algo.test(testset)
-        precisions, recalls = precision_recall_at_k(predictions, k=10, threshold=3)
-
-        # Precision and recall can then be averaged over all users
-        print("----precision----")
-        print(sum(prec for prec in precisions.values()) / len(precisions))
-        print("----recall----")
-        print(sum(rec for rec in recalls.values()) / len(recalls))
 
