@@ -21,7 +21,7 @@ def create_connection(db_file):
 
 
 def create_dataframe():
-    database = "../database/dataset-10k-dense.db"
+    database = "../database/dataset-100k-equal.db"
 
     # create a database connection
     conn = create_connection(database)
@@ -38,7 +38,7 @@ def create_dataframe():
     df["rating_value"].replace({9: 4}, inplace=True)
 
     # df = df.head(100000)
-    df.to_csv("../datasets/dataset-10k.csv")
+    df.to_csv("../datasets/dataset-100k-equal.csv")
 
     return df
 

@@ -1,6 +1,5 @@
 from src import getTopPredictions
-from surprise import KNNWithMeans, Reader, Dataset, KNNBasic, KNNBaseline
-from surprise import BaselineOnly
+from surprise import KNNWithMeans, Reader, Dataset, KNNBasic, KNNWithZScore
 from surprise.model_selection import cross_validate, train_test_split
 from surprise import accuracy
 import time
@@ -14,6 +13,8 @@ def calculate_predictions_knn():
     }
 
     knn_rs = KNNBasic(random_state=0, sim_options=sim_options)
+    # knn_rs = KNNWithMeans(random_state=0, sim_options=sim_options)
+    # knn_rs = KNNWithZScore (random_state=0, sim_options=sim_options)
 
     reader = Reader(rating_scale=(1, 5))
     df = pd.read_csv("../datasets/dataset-1k.csv")

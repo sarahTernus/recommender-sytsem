@@ -1,7 +1,6 @@
-# This is a sample Python script.
-
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from src import getTopPredictions
+from src import Prediction_Algorithms
+from src import PrecisionRecall
 
 
 def print_hi(name):
@@ -13,4 +12,4 @@ def print_hi(name):
 if __name__ == '__main__':
     print_hi('test')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+

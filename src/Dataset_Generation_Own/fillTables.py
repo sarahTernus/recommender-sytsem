@@ -70,10 +70,10 @@ def create_rating(conn, rating):
 def fill_table(conn):
 
     location_cluster = 1
-    locations_per_cluster = 60
+    locations_per_cluster = 500
     # max possible amount of users
     user_count = location_cluster * locations_per_cluster
-    post_amount = 300
+    post_amount = 1000
 
     faker = Faker('de_DE')
 
@@ -95,7 +95,7 @@ def fill_table(conn):
             unique_posts = list(range(1, post_amount + 1))
             random.shuffle(unique_posts)
 
-            interaction_amount = randint(20, user_count)
+            interaction_amount = randint(100, 300)
             for m in range(interaction_amount):
                 post = unique_posts.pop()
                 rating_value = randint(1, 9)
@@ -115,7 +115,7 @@ def fill_table(conn):
 
 def main():
     # create a database connection and fill database
-    database = "../database/dataset-10k-dense.db"
+    database = "../database/dataset-100k-verydense.db"
     conn = create_connection(database)
     fill_table(conn)
 
