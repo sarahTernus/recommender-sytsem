@@ -1,0 +1,47 @@
+Setzt die Modellbasierten (model based) Algorithmen um
+
+Es wurden 3 Matrix-Faktorisierungs Algorithmen umgesetzt
+
+- Es wird das python Scikit "surprise" genutzt: Ein Scikit zum Aufbauen und Analysieren von Empfehlungssystemen
+
+Mögliche Parameter zum Konfigurieren der kNN-Algorithmen:
+        - n_factors = The number of factors. Default is 100.
+        - n_epochs = The number of iteration of the SGD procedure. Default is 20.
+        - biased (bool) = Whether to use baselines (or biases). See note above. Default is True.
+        - init_mean = The mean of the normal distribution for factor vectors initialization. Default is 0.
+        - init_std_dev = The standard deviation of the normal distribution for factor vectors initialization.
+          Default is 0.1.
+        - lr_all = The learning rate for all parameters. Default is 0.005. (can also adjust individually)
+        - reg_all = The regularization term for all parameters. Default is 0.02. (can also adjust individually)
+        - random_state = Default is None.
+        - verbose = If True, prints the current epoch. Default is False.
+
+- Zu Beginn werden die Parameter factors und epochs definiert, da diese am relevantesten sind
+- Dann wird ein Reader angelegt, bei dem der Wertebereich angegeben wird, in der sich das Rating befinden kann
+    -> hier (1,4) oder (1,5)
+- Um den Datensatz (die CSV Datei) zu laden, wird die pandas Funktion read_csv() genutzt
+- Dann wird die Methode load_from_df() und der zuvor angelegte Reader genutzt, um ein surprise Dataset zu erzeugen.
+  Hierbei muss der dataframe drei Spalten haben: die Benutzer-IDs, Artikel-IDs und die Bewertungen.
+
+- Dann kann die entsprechende Funktion geladen werden, der die Daten und das similarity measures dictionary
+  übergeben werden. Zur Verfügung stehen:
+        -> calculate_predictions_svd()
+        -> calculate_predictions_svdpp()
+        -> calculate_predictions_nmf()
+        - Diese bauen aus den Übergebenen Daten das Trainset und fitten den entsprechenden surprise Algorithmus
+          mit dem Trainset.
+                - calculate_predictions_svd() -> SVD()
+                - calculate_predictions_svdpp() -> SVDpp()
+                - calculate_predictions_nmf() -> NMF()
+        - Dann wird aus allen restlichen User-Item Kombinationen mit der Funktion build_anti_testset()
+          das Testset erstellt und für diese werden mit test() die Bewertungs-Vorhersagen getroffen
+        - Die Dauer des fittens und die Akkurattesse (RMSE, MAE) werden ausgegeben
+        - Zuletzt werden die Vorhersagen returnt
+
+- Anhand der zurückgegebenen Vorhersagen können durch die Funktion get_top_n() aus der Datei getTopPredictions.py
+  nun Vorhersagen getroffen werden, welche ausgegeben werden.
+        -> Form dieser Ausgabe: 1 [264, 279, 113, 111, 254, 167, 280, 20, 18, 296]
+
+Quellen:
+- https://surprise.readthedocs.io/en/stable/matrix_factorization.html
+- Nicolas Hug. Surprise: A python library for recommender systems. Journal of Open Source Software, 5(52):2174, 2020

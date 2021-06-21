@@ -10,6 +10,7 @@ def create_df():
     df = pd.read_csv("../datasets/ml-datasets/ratings-ml100k.csv")
     df.columns = ['user_id', 'post_id', 'rating_value', 'timestamp']
 
+    # to achieve normal distribution
     df["rating_value"].replace({3.0: 7.0}, inplace=True)
     df["rating_value"].replace({4.0: 3.0}, inplace=True)
     df["rating_value"].replace({7.0: 4.0}, inplace=True)
@@ -27,14 +28,17 @@ def create_df():
     number_of_rows = len(index)
     print(number_of_rows)
 
-    """df_size = 1000
+    """
+    # specify size of generated dataset
+    df_size = 1000
     df = df.tail(df_size)
 
     index = df.index
     number_of_rows = len(index)
     print(number_of_rows)"""
 
-    df.to_csv("../datasets/dataset-100k-movielens.csv")
+    # generate dataset -> .csv file
+    df.to_csv("../datasets/test.csv")
 
     return df, number_of_rows
 

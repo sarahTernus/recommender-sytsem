@@ -1,4 +1,4 @@
-from src import PrecisionRecall
+from src import calculatePrecisionRecall
 from surprise import Reader, Dataset, KNNBasic, KNNWithMeans, KNNWithZScore
 import pandas as pd
 from surprise.model_selection import cross_validate
@@ -10,18 +10,19 @@ if __name__ == '__main__':
     """CONFIGURE AND RUN MEMORY BASED ALGORITHMS"""
     # choose similarity measurement and user or item-based
     sim_options = {
-        "name": "cosine",
+        "name": "pearson",
         "user_based": True,  # Compute  similarities between users
     }
 
     # generate Dataset for predictions -> choose path of desired Dataset
-    reader = Reader(rating_scale=(1, 5))
-    df = pd.read_csv("./datasets/dataset-100k.csv")
+    reader = Reader(rating_scale=(1, 4))
+    df = pd.read_csv("./datasets/explicit-dataset-100k-movielens.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
+    # data = Dataset.load_builtin(name='ml-10m')
 
-    knnBasic = KNNBasic(random_state=0, sim_options=sim_options)
-    knnMeans = KNNWithMeans(random_state=0, sim_options=sim_options)
-    knnZScore = KNNWithZScore(random_state=0, sim_options=sim_options)
+    knnBasic = KNNBasic(random_state=0, sim_options=sim_options, verbose=False)
+    knnMeans = KNNWithMeans(random_state=0, sim_options=sim_options, verbose=False)
+    knnZScore = KNNWithZScore(random_state=0, sim_options=sim_options, verbose=False)
 
     """CROSS VALIDATION RMSE & MAE"""
     print("\n\n________________________________________________________________\n")
@@ -62,7 +63,7 @@ if __name__ == '__main__':
     for trainset, testset in kf.split(data):
         knnBasic.fit(trainset)
         predictions = knnBasic.test(testset)
-        precisions, recalls = PrecisionRecall.precision_recall_at_k(predictions, k=10, threshold=3)
+        precisions, recalls = calculatePrecisionRecall.precision_recall_at_k(predictions, k=10, threshold=3)
 
         # Precision and recall can then be averaged over all users
         print("----precision----")
@@ -76,7 +77,7 @@ if __name__ == '__main__':
     for trainset, testset in kf.split(data):
         knnMeans.fit(trainset)
         predictions = knnMeans.test(testset)
-        precisions, recalls = PrecisionRecall.precision_recall_at_k(predictions, k=10, threshold=3)
+        precisions, recalls = calculatePrecisionRecall.precision_recall_at_k(predictions, k=10, threshold=3)
 
         # Precision and recall can then be averaged over all users
         print("----precision----")
@@ -90,7 +91,7 @@ if __name__ == '__main__':
     for trainset, testset in kf.split(data):
         knnZScore.fit(trainset)
         predictions = knnZScore.test(testset)
-        precisions, recalls = PrecisionRecall.precision_recall_at_k(predictions, k=10, threshold=3)
+        precisions, recalls = calculatePrecisionRecall.precision_recall_at_k(predictions, k=10, threshold=3)
 
         # Precision and recall can then be averaged over all users
         print("----precision----")

@@ -28,13 +28,16 @@ def create_df():
     number_of_rows = len(index)
     print(number_of_rows)
 
-    """df_size = 1000
+    """
+    # specify size of generated dataset
+    df_size = 1000
     df = df.head(df_size)
 
     index = df.index
     number_of_rows = len(index)
     print(number_of_rows)"""
 
+    # generate dataset -> .csv file
     df.to_csv("../datasets/ML-dataset-100k.csv")
 
     return df, number_of_rows

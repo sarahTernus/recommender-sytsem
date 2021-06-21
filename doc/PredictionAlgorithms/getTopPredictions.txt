@@ -1,0 +1,20 @@
+Erzeugt Empfehlungen anhand der Vorhersagen
+
+Skript aus dem Surprise Repository
+
+get_top_n()
+- Gibt die Top-N-Empfehlung für jeden Benutzer aus einer Menge von Vorhersagen zurück.
+- Bekommt übergeben
+        - predictions(Liste von Prediction-Objekten): Liste der Vorhersagen,
+          die von der Testmethode eines Algorithmus zurückgegeben wird.
+        - n(int): Die Anzahl der Empfehlungen, die für jeden Benutzer ausgegeben werden sollen.
+          Standardmäßig sind es 10.
+
+- Rückgabe:
+        - Ein dict, in dem die (rohen) Nutzer ids und die zu empfehlenen Artikel in Listen der größe n ausgegeben werden
+        -> Form dieser Ausgabe: 1 [264, 279, 113, 111, 254, 167, 280, 20, 18, 296]
+
+
+Quellen:
+- https://surprise.readthedocs.io/en/stable/FAQ.html#how-to-get-the-top-n-recommendations-for-each-user
+- Nicolas Hug. Surprise: A python library for recommender systems. Journal of Open Source Software, 5(52):2174, 2020

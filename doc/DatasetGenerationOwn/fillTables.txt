@@ -1,0 +1,29 @@
+Befüllt die 3 Tabellen der Datenbank
+
+create_connection(db_file)
+- Stellt eine Verbindung zur Datenbank her
+
+create_user(conn, user)
+- Erstellt einen Nutzer
+
+create_post(conn, post)
+- Erstellt einen Post
+
+create_rating(conn, rating)
+- Erstellt eine Bewertung
+
+fill_table()
+- Die location cluster werden festgelegt: wie viele Cluster es gibt und wie viele user es per cluster gibt
+- Die Anzahl an usern, durch die anzahl an clustern und user per cluster, wird berechnet
+- Die Anzahl an Posts wird festgelegt
+- Ein zufälliger Standort wird per Faker erzeugt (Längen- und Breitengrad)
+- Es werden entsprechend der Variable locations_per_cluster viele Standorte in der Nähe erzeugt
+- Die standorte werden Nutzern zugewiesen, welche in der DB gespeichert werden
+
+- Die Anzahl an Posts (alle post_ids) wird in eine Liste gepackt die zufällig sortiert wird
+- Dann wird ein zufälliger Wert bestimmt, welcher festlegt wie viele Interaktionen der Nutzer insgesamt getätigt hat
+- pro Interaktion wird ein rating von 1-9 erzeugt und in der DB gespeichert
+        - mit der entsprechenden user_id
+        - post_id wird aus der Liste nacheinander abgearbeitet
+
+- Zuletzt werden Posts mit Faker erstellt und in der DB gespeichert

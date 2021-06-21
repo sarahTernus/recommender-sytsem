@@ -1,0 +1,19 @@
+Testet den random Algorithmus als Vergleichswert
+
+- Zunächst wird ein Reader angelegt, bei dem der Wertebereich angegeben wird, in der sich das Rating befinden kann
+     -> hier (1,4) oder (1,5)
+- Um den Datensatz (die CSV Datei) zu laden, wird die pandas Funktion read_csv() genutzt
+- Dann wird die Methode load_from_df() und der zuvor angelegte Reader genutzt, um ein surprise Dataset zu erzeugen.
+  Hierbei muss der dataframe drei Spalten haben: die Benutzer-IDs, Artikel-IDs und die Bewertungen.
+
+- Dann wird der random Algorithmus aufgerufen, welcher nach der Wahrscheinlichkeit
+  für ein rating bei einer Normalverteilungdie Vorhersagen berechnet
+- Es wird eine 5-fache-Kreuvalidierung für diesen aufgerufen
+        -> RMSE, MAE als Maß
+
+- Es wird festgelegt wie viele "folds" es bei der Kreuzvalidierung für precision und recall geben soll
+- Für den Algorithmus wird dann die precision_recall_at_k() Funktion des calculatePrecisionRecall.py Skripts aufgerufen
+  und mit der entsprechenden Anzahl an folds durchgeführt
+
+Quellen:
+- Nicolas Hug. Surprise: A python library for recommender systems. Journal of Open Source Software, 5(52):2174, 2020

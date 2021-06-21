@@ -1,0 +1,20 @@
+Berechnet Precision und Recall
+
+Skript aus dem surprise Repository
+
+precision_recall_at_k()
+- Gibt Precision und Recall Werte für jeden Benutzer zurück
+- Bekommt übergeben
+        - predictions: Die Liste der Vorhersagen, wie die von der Testmethode eines Algorithmus zurückgegeben werden.
+        - k: Die Anzahl der Empfehlungen für jeden Benutzer
+        - threshold: Schwellenwert, ab dem ein Element empfohlen wird
+
+- Rückgabe:
+        - Precision- und Recall-Werte
+
+Precision = hits/recommended
+Recall = hit/relevant
+
+Quellen:
+- https://surprise.readthedocs.io/en/stable/FAQ.html#precision-recall-at-k-py
+- Nicolas Hug. Surprise: A python library for recommender systems. Journal of Open Source Software, 5(52):2174, 2020

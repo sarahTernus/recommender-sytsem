@@ -1,5 +1,5 @@
-from src import getTopPredictions
-from surprise import KNNWithMeans, Reader, Dataset, KNNBasic, KNNWithZScore
+from src.PredictionAlgorithms import getTopPredictions
+from surprise import Reader, Dataset, SVD, NMF, SVDpp
 from surprise import accuracy
 import time
 import pandas as pd
@@ -7,18 +7,18 @@ import pandas as pd
 
 # To actually recommend not rated Items
 # (full rating data ist trainset, all other pairs are testset to recommend)
-def calculate_predictions_knn(dataset, similarity):
+def calculate_predictions_svd(dataset, amount_factors, amount_epochs):
 
     trainset = dataset.build_full_trainset()
-    knn = KNNBasic(random_state=0, sim_options=similarity)
+    svd = SVD(random_state=0, n_factors=amount_factors, n_epochs=amount_epochs, verbose=True)
 
     start = time.time()
-    knn.fit(trainset)
+    svd.fit(trainset)
     print("-- The script took: ", time.time() - start, " seconds --")
 
     # Than predict ratings for all pairs (u, i) that are NOT in the training set.
     testset = trainset.build_anti_testset()
-    predictions = knn.test(testset)
+    predictions = svd.test(testset)
 
     accuracy.rmse(predictions)
     accuracy.mae(predictions)
@@ -26,18 +26,18 @@ def calculate_predictions_knn(dataset, similarity):
     return predictions
 
 
-def calculate_predictions_knn_means(dataset, similarity):
+def calculate_predictions_svdpp(dataset, amount_factors, amount_epochs):
 
     trainset = dataset.build_full_trainset()
-    knn_m = KNNWithMeans(random_state=0, sim_options=similarity)
+    svdpp = SVDpp(random_state=0, n_factors=amount_factors, n_epochs=amount_epochs, verbose=True)
 
     start = time.time()
-    knn_m.fit(trainset)
+    svdpp.fit(trainset)
     print("-- The script took: ", time.time() - start, " seconds --")
 
     # Than predict ratings for all pairs (u, i) that are NOT in the training set.
     testset = trainset.build_anti_testset()
-    predictions = knn_m.test(testset)
+    predictions = svdpp.test(testset)
 
     accuracy.rmse(predictions)
     accuracy.mae(predictions)
@@ -45,18 +45,18 @@ def calculate_predictions_knn_means(dataset, similarity):
     return predictions
 
 
-def calculate_predictions_knn_zscore(dataset, similarity):
+def calculate_predictions_nmf(dataset, amount_factors, amount_epochs):
 
     trainset = dataset.build_full_trainset()
-    knn_z = KNNWithZScore(random_state=0, sim_options=similarity)
+    nmf = NMF(random_state=0, n_factors=amount_factors, n_epochs=amount_epochs, verbose=True)
 
     start = time.time()
-    knn_z.fit(trainset)
+    nmf.fit(trainset)
     print("-- The script took: ", time.time() - start, " seconds --")
 
     # Than predict ratings for all pairs (u, i) that are NOT in the training set.
     testset = trainset.build_anti_testset()
-    predictions = knn_z.test(testset)
+    predictions = nmf.test(testset)
 
     accuracy.rmse(predictions)
     accuracy.mae(predictions)
@@ -66,11 +66,9 @@ def calculate_predictions_knn_zscore(dataset, similarity):
 
 if __name__ == '__main__':
 
-    # choose similarity measurement (name) and user or item-based (user_based)
-    sim_options = {
-        "name": "cosine",
-        "user_based": True,
-    }
+    # set parameters
+    factors = 200
+    epochs = 30
 
     # generate Dataset for predictions -> choose path of desired Dataset
     reader = Reader(rating_scale=(1, 5))
@@ -78,12 +76,14 @@ if __name__ == '__main__':
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
 
     # choose which predictions from which algorithm should be displayed
-    # from calculate_predictions_knn_means or calculate_predictions_knn_means or calculate_predictions_knn_zscore
-    calculated_predictions = calculate_predictions_knn(data, sim_options)
+    # from calculate_predictions_svd or from calculate_predictions_nmf
+    calculated_predictions = calculate_predictions_svd(data, factors, epochs)
     # how many predictions are to be displayed per person
     top_n = getTopPredictions.get_top_n(calculated_predictions, 10)
     for uid, user_ratings in top_n.items():
         print(uid, [iid for (iid, _) in user_ratings])
+
+
 
 
 

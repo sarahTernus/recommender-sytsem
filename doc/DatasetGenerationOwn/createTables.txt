@@ -1,5 +1,6 @@
--> Erstellt eine Datenbank falls sie noch nicht existiert
+Erstellt eine Datenbank mit 3 Tabellen falls sie noch nicht existiert
 
+- Stellt eine Verbindung zur Datenbank her, wenn sie noch nicht existiert wird sie erstellt
 - Erstellt die Datenbank Tabellen für:
         -> user (user_id, long, lat)
         -> posts (post_id, title, description (Standort long, lat))

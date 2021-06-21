@@ -13,6 +13,7 @@ def create_df():
     """df_movie = df_movie[(df_movie.rating != 0.5) & (df_movie.rating != 1.5) &
                         (df_movie.rating != 2.5) & (df_movie.rating != 4.5)]"""
 
+    # 0.5->1, 1.5->2, 2.5->2, 3.5->3, 4.5->3 to achieve normal distribution
     df["rating_value"].replace({0.5: 1}, inplace=True)
     df["rating_value"].replace({1.5: 2}, inplace=True)
     df["rating_value"].replace({2.5: 2}, inplace=True)
@@ -29,14 +30,16 @@ def create_df():
     number_of_rows = len(index)
     print(number_of_rows)
 
-    df_size = 1000000
+    # specify size of generated dataset
+    df_size = 10000000
     df = df.head(df_size)
 
     index = df.index
     number_of_rows = len(index)
     print(number_of_rows)
 
-    df.to_csv("../datasets/dataset4.csv")
+    # generate dataset -> .csv file
+    df.to_csv("../datasets/dataset-10m.csv")
 
     return df, number_of_rows
 

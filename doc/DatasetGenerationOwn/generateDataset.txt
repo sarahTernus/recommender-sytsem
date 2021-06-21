@@ -1,0 +1,13 @@
+Erzeugt anhand der Datenbank Datensätze
+
+create_connection(db_file)
+- Stellt eine Verbindung zur Datenbank her
+
+create_dataset(connection)
+- Liest aus der rating Tabelle user_id's, post_id's und rating_value's
+- Ändert die Ratingwerte von 1-9 zu einer Skala von [1,5] bzw [1,4] um eine Normalverteilung zu erlangen
+    -> 6 = 2
+    -> 7 = 3
+    -> 8 = 3
+    -> 9 = 4
+- Speichert den pandas Dataframe in einer CSV Datei

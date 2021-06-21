@@ -1,0 +1,9 @@
+Erzeugt anhand von Datensätzen mit hybridem Feedback Datensätze mit rein explizitem Feedback
+
+create_dataset_ex()
+- Öffnet den pandas Dataframe mit hybridem Feedback
+- Speichert den Dataframe in df ausgenommen aller Zeilen wo das rating_value 3 beträgt
+- Ändert die Ratingwerte 4 auf 3 und von 5 auf 4, sodass nur noch Bewertungen der Skala [1,4] existieren
+    -> 4 = 3
+    -> 5 = 4
+- Speichert den pandas Dataframe in einer CSV Datei

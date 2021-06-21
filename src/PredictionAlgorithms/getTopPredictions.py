@@ -1,5 +1,4 @@
 from collections import defaultdict
-import surprise
 
 
 def get_top_n(predictions, n=10):
@@ -12,7 +11,7 @@ def get_top_n(predictions, n=10):
             is 10.
 
     Returns:
-    A dict where keys are user (raw) ids and values are lists of tuples:
+        A dict where keys are user (raw) ids and values are lists of tuples:
         [(raw item id, rating estimation), ...] of size n.
     """
 

@@ -1,0 +1,51 @@
+Setzt die Speicherbasierten (memory based) Algorithmen um
+
+Es wurden 3 kNN Algorithmen umgesetzt
+
+- Es wird das python Scikit "surprise" genutzt: Ein Scikit zum Aufbauen und Analysieren von Empfehlungssystemen
+
+Mögliche Parameter zum Konfigurieren der kNN-Algorithmen:
+        - k (int) = Die (max) Anzahl an betrachteten Nachbarn. Der Default ist 40.
+        - min_k (int) = Die minimale Anzahl an betrachteten Nachbarn. Wenn es nicht genug Nachbarn gibt = 0.
+          Der Default ist 1.
+        - sim_options (dict) = Ein dictionary an Optionen des similarity measure's.
+        - verbose (bool) = Ob Statusmeldungen usw. ausgegeben werden sollen. Der Default ist True.
+
+
+- Zu Beginn wird ein python dictionary als "similarity measure" definiert
+  Das dictionary kann folgendes enthalten:
+        - "name" enthält die zu verwendende Ähnlichkeitsmetrik (z.B. cosine, msd, pearson oder pearson_baseline)
+        - "user_based" ist ein boolescher Wert, der angibt, ob der Ansatz user- oder item-based sein wird.
+        - "min_support" (nicht erforderlich) ist die Mindestanzahl gemeinsamer Elemente,
+           die zwischen Benutzern erforderlich ist, um sie für die Ähnlichkeit zu berücksichtigen.
+           Für den itembasierten Ansatz entspricht dies der Mindestanzahl gemeinsamer Benutzer für zwei Items.
+
+- Dann wird ein Reader angelegt, bei dem der Wertebereich angegeben wird, in der sich das Rating befinden kann
+    -> hier (1,4) oder (1,5)
+- Um den Datensatz (die CSV Datei) zu laden, wird die pandas Funktion read_csv() genutzt
+- Dann wird die Methode load_from_df() und der zuvor angelegte Reader genutzt, um ein surprise Dataset zu erzeugen.
+  Hierbei muss der dataframe drei Spalten haben: die Benutzer-IDs, Artikel-IDs und die Bewertungen.
+
+- Dann kann die entsprechende Funktion geladen werden, der die Daten und das similarity measures dictionary
+  übergeben werden. Zur Verfügung stehen:
+        -> calculate_predictions_knn()
+        -> calculate_predictions_knn_means()
+        -> calculate_predictions_knn_zscore()
+
+        - Diese bauen aus den Übergebenen Daten das Trainset und fitten den entsprechenden surprise Algorithmus
+          (mit dem entsprechenden similarity dictionary) mit dem Trainset.
+                - calculate_predictions_knn() -> KNNBasic()
+                - calculate_predictions_knn_means() -> KNNWithMeans()
+                - calculate_predictions_knn_zscore() -> KNNWithZScore()
+        - Dann wird aus allen restlichen User-Item Kombinationen mit der Funktion build_anti_testset()
+          das Testset erstellt und für diese werden mit test() die Bewertungs-Vorhersagen getroffen
+        - Die Dauer des fittens und die Akkurattesse (RMSE, MAE) werden ausgegeben
+        - Zuletzt werden die Vorhersagen returnt
+
+- Anhand der zurückgegebenen Vorhersagen können durch die Funktion get_top_n() aus der Datei getTopPredictions.py
+  nun Vorhersagen getroffen werden, welche ausgegeben werden.
+        -> Form dieser Ausgabe: 1 [264, 279, 113, 111, 254, 167, 280, 20, 18, 296]
+
+Quellen:
+- https://surprise.readthedocs.io/en/stable/knn_inspired.html
+- Nicolas Hug. Surprise: A python library for recommender systems. Journal of Open Source Software, 5(52):2174, 2020

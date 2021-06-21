@@ -1,7 +1,0 @@
--> Erstellt eine Datenbank falls sie noch nicht existiert
-
-- Erstellt die Datenbank Tabellen für:
-        -> user (Nutzer)
-        -> categories (Kategorien)
-        -> comments (Kommentare)
-        -> votes (Bewertungen)

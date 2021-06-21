@@ -1,0 +1,13 @@
+Es werden Datensätze anhand des Movielens Datensatzes von Grouplens erstellt
+
+-> Hierfür wird zunächst der entsprechende Datensatz von movielens geladen
+-> Jeder Spalte wird eine Bezeichnung zugeteilt
+
+-> Dann werden die rating Werte so verändert, dass eine Normalverteilung vorliegt
+-> Die Spalte mit den timestamps ist für diesen Anwendungsfall irrelevant und wird entfernt
+-> Duplikate werden entfernt und der Index wird zurückgesetzt
+
+-> Die größe des Dataframes (Anzahl an Bewertungen) wird ausgegeben
+-> Die größe des Datensatzes den man erstellen will wird festgelegt durch die Funktion head()
+
+-> Der Dataframe wird in einer CSV Datei gespeichert

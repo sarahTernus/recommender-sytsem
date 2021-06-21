@@ -2,9 +2,18 @@ from __future__ import (absolute_import, division, print_function, unicode_liter
 from collections import defaultdict
 
 
-def precision_recall_at_k(predictions, k=10, threshold=3.5):
-    """Return precision and recall at k metrics for each user"""
+def precision_recall_at_k(predictions, k=10, threshold=3.0):
+    """Return precision and recall at k metrics for each user
 
+    Args:
+        predictions(list of Prediction objects): The list of predictions, as
+            returned by the test method of an algorithm.
+        k: The number of recommendations for each user
+        threshold: threshold when a item gets recommended
+
+    Returns:
+        Precision and Recall Values
+    """
     # First map the predictions to each user.
     user_est_true = defaultdict(list)
     for uid, _, true_r, est, _ in predictions:
