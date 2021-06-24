@@ -1,0 +1,22 @@
+Sortiert Vorhersagen aus, bei denen Nutzer und Beiträge zu weit entfernt sind
+
+
+create_connection(db_file)
+- stellt Verbindunf zur DB her
+
+calculate_distance(lat_u, long_u, lat_p, long_p)
+- berechnet mit der Haversine Formel, anhand der Längen- und Breitengrade, den Abstand der Standorte
+- gibt den Abstand zurück
+Quelle: https://www.kite.com/python/answers/how-to-find-the-distance-between-two-lat-long-coordinates-in-python
+
+sort_out_by_location(connection)
+- erstellt 3 pandas dataframes
+        - df -> beinhaltet user und post_ids der ratings
+        - df_user -> beinhaltet user_ids und deren Standorte als Längen und Breitengrad
+        - df_post -> beinhaltet post_ids und deren Standorte als Längen und Breitengrad
+- joint die 3 dataframes auf der user_id bzw. post_id in df
+- iteriert über df und berechnet per calculate_distance() den Abstand der User zum Post
+- wenn der Abstand die "allowed_distance" überschreitet wird die zeile des dataframes entfernt
+- dann wird der index zurückgesetzt
+- zuletzt wird der reduzierte Dataframe in einer csv gespeichert,
+  (die von memorybased.py oder modelbased.py aufgerufen werden kann)

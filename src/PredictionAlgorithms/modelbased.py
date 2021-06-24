@@ -71,8 +71,9 @@ if __name__ == '__main__':
     epochs = 30
 
     # generate Dataset for predictions -> choose path of desired Dataset
+    # if location should be included run sortByLocation.py first and use dedicated csv (.dataset/location)
     reader = Reader(rating_scale=(1, 5))
-    df = pd.read_csv("../datasets/dataset-1k.csv")
+    df = pd.read_csv("../datasets/location/dataset-location.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
 
     # choose which predictions from which algorithm should be displayed

@@ -39,14 +39,14 @@ def create_dataset(connection):
     df["rating_value"].replace({9: 4}, inplace=True)
 
     # df = df.head(100000)
-    df.to_csv("../datasets/test.csv")
+    df.to_csv("../datasets/dataset-location.csv")
 
     return df
 
 
 if __name__ == '__main__':
     # create a database connection
-    database = "../database/dataset-100k-equal.db"
+    database = "../database/location.db"
     db_connection = create_connection(database)
 
     dataframe = create_dataset(db_connection)

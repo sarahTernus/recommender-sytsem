@@ -44,7 +44,7 @@ def create_post(conn, post):
     :param conn:
     :return: user id
     """
-    sql = ''' INSERT INTO post(title, description)
+    sql = ''' INSERT INTO post(latitude, longitude)
               VALUES(?,?) '''
     cur = conn.cursor()
     cur.execute(sql, post)
@@ -69,11 +69,11 @@ def create_rating(conn, rating):
 
 def fill_table(conn):
 
-    location_cluster = 1
-    locations_per_cluster = 500
+    location_cluster = 4
+    locations_per_cluster = 250
     # max possible amount of users
     user_count = location_cluster * locations_per_cluster
-    post_amount = 1000
+    post_amount = 100
 
     faker = Faker('de_DE')
 
@@ -85,17 +85,17 @@ def fill_table(conn):
         # calculates a random float between 0.01 and 0.1 to fake 10 users at a similar location
         for j in range(locations_per_cluster):
             # !creating USERs!
-            random_distance_long = randrange(10) / 100
             random_distance_lat = randrange(10) / 100
+            random_distance_long = randrange(10) / 100
             user = (float(lat_long[0]) - random_distance_lat, float(lat_long[1]) - random_distance_long)
 
             user_id = create_user(conn, user)
             print("user", user_id)
 
-            unique_posts = list(range(1, post_amount + 1))
+            unique_posts = list(range(1, post_amount*location_cluster + 1))
             random.shuffle(unique_posts)
 
-            interaction_amount = randint(100, 300)
+            interaction_amount = randint(50, 150)
             for m in range(interaction_amount):
                 post = unique_posts.pop()
                 rating_value = randint(1, 9)
@@ -104,18 +104,18 @@ def fill_table(conn):
                 rating_id = create_rating(conn, rating)
                 print("rating", rating_id)
 
-    for k in range(post_amount):
-        post_title = faker.word()
-        description = faker.paragraph()
+        for k in range(post_amount):
+            distance_lat_post = randrange(10) / 100
+            distance_long_post = randrange(10) / 100
 
-        post = (post_title, description)
-        post_id = create_post(conn, post)
-        print("post", post_id)
+            post = (float(lat_long[0]) - distance_lat_post, float(lat_long[1]) - distance_long_post)
+            post_id = create_post(conn, post)
+            print("post", post_id)
 
 
 def main():
     # create a database connection and fill database
-    database = "../database/dataset-100k-verydense.db"
+    database = "../database/location.db"
     conn = create_connection(database)
     fill_table(conn)
 
