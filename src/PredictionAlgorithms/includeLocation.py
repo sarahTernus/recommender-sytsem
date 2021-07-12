@@ -54,7 +54,7 @@ def calculate_distance(lat_u, long_u, lat_p, long_p):
 def sort_out_by_location(connection):
     """
     Creates a CVS where recommendations that are too far away are excluded
-    :param connection the database to get user and post coordinates
+    :param connection: database connection to get user and post coordinates
     """
 
     df = pd.read_csv("../datasets/location/dataset-location.csv", index_col=0)
@@ -88,7 +88,7 @@ def sort_out_by_location(connection):
 
     df = df.reset_index(drop=True)
     print(df)
-    df.to_csv("../datasets/location/dataset-reduced.csv")
+    df.to_csv("../datasets/location/dataset-location-reduced.csv")
 
 
 def main():

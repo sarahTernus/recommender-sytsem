@@ -5,8 +5,8 @@ import numpy as np
 
 
 def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
+    """
+    create a database connection to the SQLite database specified by db_file
     :param db_file: database file
     :return: Connection object or None
     """
@@ -21,8 +21,8 @@ def create_connection(db_file):
 
 
 def create_dataset(connection):
-    """ create a pandas dataframe from the db
-    and generate csv file from it
+    """
+    create a pandas dataframe from the db and generate csv file from it
     :param connection: database connection
     :return: pandas dataframe
     """
@@ -39,7 +39,7 @@ def create_dataset(connection):
     df["rating_value"].replace({9: 4}, inplace=True)
 
     # df = df.head(100000)
-    df.to_csv("../datasets/dataset-location.csv")
+    df.to_csv("../datasets/location/dataset-location.csv")
 
     return df
 

@@ -8,7 +8,12 @@ import pandas as pd
 # To actually recommend not rated Items
 # (full rating data ist trainset, all other pairs are testset to recommend)
 def calculate_predictions_knn(dataset, similarity):
-
+    """
+    calculate the predictions with KNNBasic
+        :param dataset: from csv file created dataset
+        :param similarity: similarity dictionary
+        :return: predictions
+    """
     trainset = dataset.build_full_trainset()
     knn = KNNBasic(random_state=0, sim_options=similarity)
 
@@ -27,6 +32,12 @@ def calculate_predictions_knn(dataset, similarity):
 
 
 def calculate_predictions_knn_means(dataset, similarity):
+    """
+    calculate the predictions with KNNWithMeans (mean-centered knn)
+        :param dataset: from csv file created dataset
+        :param similarity: similarity dictionary
+        :return: predictions
+    """
 
     trainset = dataset.build_full_trainset()
     knn_m = KNNWithMeans(random_state=0, sim_options=similarity)
@@ -46,6 +57,12 @@ def calculate_predictions_knn_means(dataset, similarity):
 
 
 def calculate_predictions_knn_zscore(dataset, similarity):
+    """
+    calculate the predictions with KNNWithZScore
+        :param dataset: from csv file created dataset
+        :param similarity: similarity dictionary
+        :return: predictions
+    """
 
     trainset = dataset.build_full_trainset()
     knn_z = KNNWithZScore(random_state=0, sim_options=similarity)
@@ -75,7 +92,7 @@ if __name__ == '__main__':
     # generate Dataset for predictions -> choose path of desired Dataset
     # if location should be included run sortByLocation.py first and use dedicated csv (.dataset/location)
     reader = Reader(rating_scale=(1, 5))
-    df = pd.read_csv("../datasets/location/dataset-reduced.csv")
+    df = pd.read_csv("../datasets/location/dataset-location-reduced.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
 
     # choose which predictions from which algorithm should be displayed

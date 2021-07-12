@@ -8,7 +8,13 @@ import pandas as pd
 # To actually recommend not rated Items
 # (full rating data ist trainset, all other pairs are testset to recommend)
 def calculate_predictions_svd(dataset, amount_factors, amount_epochs):
-
+    """
+    calculate the predictions SVD
+        :param dataset: from csv file created dataset
+        :param amount_factors: factors
+        :param amount_epochs: epochs
+        :return: predictions
+    """
     trainset = dataset.build_full_trainset()
     svd = SVD(random_state=0, n_factors=amount_factors, n_epochs=amount_epochs, verbose=True)
 
@@ -27,6 +33,13 @@ def calculate_predictions_svd(dataset, amount_factors, amount_epochs):
 
 
 def calculate_predictions_svdpp(dataset, amount_factors, amount_epochs):
+    """
+    calculate the predictions SVD++
+        :param dataset: from csv file created dataset
+        :param amount_factors: factors
+        :param amount_epochs: epochs
+        :return: predictions
+    """
 
     trainset = dataset.build_full_trainset()
     svdpp = SVDpp(random_state=0, n_factors=amount_factors, n_epochs=amount_epochs, verbose=True)
@@ -46,6 +59,13 @@ def calculate_predictions_svdpp(dataset, amount_factors, amount_epochs):
 
 
 def calculate_predictions_nmf(dataset, amount_factors, amount_epochs):
+    """
+    calculate the predictions NMF
+        :param dataset: from csv file created dataset
+        :param amount_factors: factors
+        :param amount_epochs: epochs
+        :return: predictions
+    """
 
     trainset = dataset.build_full_trainset()
     nmf = NMF(random_state=0, n_factors=amount_factors, n_epochs=amount_epochs, verbose=True)
@@ -73,7 +93,7 @@ if __name__ == '__main__':
     # generate Dataset for predictions -> choose path of desired Dataset
     # if location should be included run sortByLocation.py first and use dedicated csv (.dataset/location)
     reader = Reader(rating_scale=(1, 5))
-    df = pd.read_csv("../datasets/location/dataset-location.csv")
+    df = pd.read_csv("../datasets/location/dataset-location-reduced.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
 
     # choose which predictions from which algorithm should be displayed

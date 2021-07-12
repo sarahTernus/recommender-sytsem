@@ -4,7 +4,7 @@ import pandas as pd
 def create_df():
     """
     Create the rating dataframe from the rating.csv and adjust to fit our case
-    :return: df
+    :return: dataframe and dataframe size
     """
 
     df = pd.read_csv("../datasets/ml-datasets/ratings-ml20m.csv")

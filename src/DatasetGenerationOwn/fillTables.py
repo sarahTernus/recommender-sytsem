@@ -7,8 +7,8 @@ import random
 
 
 def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
+    """
+    create a database connection to the SQLite database specified by db_file
     :param db_file: database file
     :return: Connection object or None
     """
@@ -25,8 +25,8 @@ def create_connection(db_file):
 def create_user(conn, user):
     """
     Create a new project into the projects table
-    :param user:
-    :param conn:
+    :param user
+    :param conn: connection to database
     :return: user id
     """
     sql = ''' INSERT INTO user(latitude, longitude)
@@ -40,9 +40,9 @@ def create_user(conn, user):
 def create_post(conn, post):
     """
     Create a new project into the projects table
-    :param post:
-    :param conn:
-    :return: user id
+    :param post
+    :param conn: connection to database
+    :return: post id
     """
     sql = ''' INSERT INTO post(latitude, longitude)
               VALUES(?,?) '''
@@ -55,9 +55,9 @@ def create_post(conn, post):
 def create_rating(conn, rating):
     """
     Create a new project into the projects table
-    :param rating:
-    :param conn:
-    :return: user id
+    :param rating
+    :param conn: connection to database
+    :return: rating id
     """
     sql = ''' INSERT INTO rating(user_id, post_id, rating_value, rating_timestamp)
               VALUES(?,?,?,?) '''
@@ -68,7 +68,10 @@ def create_rating(conn, rating):
 
 
 def fill_table(conn):
-
+    """
+    Fill the database tables
+    :param conn: connection to database
+    """
     location_cluster = 4
     locations_per_cluster = 250
     # max possible amount of users

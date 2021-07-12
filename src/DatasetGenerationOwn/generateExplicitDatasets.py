@@ -13,7 +13,7 @@ def create_dataset_ex():
     df["rating_value"].replace({4.0: 3}, inplace=True)
     df["rating_value"].replace({5.0: 4}, inplace=True)
 
-    df.to_csv("../datasets/explicit-test.csv")
+    df.to_csv("../datasets/location/dataset-location-explicit.csv")
 
     return df
 

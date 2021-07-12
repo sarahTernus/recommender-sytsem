@@ -16,13 +16,13 @@ if __name__ == '__main__':
 
     # generate Dataset for predictions -> choose path of desired Dataset
     reader = Reader(rating_scale=(1, 4))
-    df = pd.read_csv("datasets/explicit-dataset4-100k-movielens.csv")
+    df = pd.read_csv("datasets/dataset4-100k-movielens.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
     # data = Dataset.load_builtin(name='ml-10m')
 
-    knnBasic = KNNBasic(random_state=0, sim_options=sim_options, verbose=False)
-    knnMeans = KNNWithMeans(random_state=0, sim_options=sim_options, verbose=False)
-    knnZScore = KNNWithZScore(random_state=0, sim_options=sim_options, verbose=False)
+    knnBasic = KNNBasic(random_state=0, sim_options=sim_options, verbose=True)
+    knnMeans = KNNWithMeans(random_state=0, sim_options=sim_options, verbose=True)
+    knnZScore = KNNWithZScore(random_state=0, sim_options=sim_options, verbose=True)
 
     """CROSS VALIDATION RMSE & MAE"""
     print("\n\n________________________________________________________________\n")

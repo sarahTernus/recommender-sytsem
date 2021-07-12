@@ -1,100 +1,77 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: win-64
-_tflow_select=2.3.0=eigen
-absl-py=0.12.0=py38haa95532_0
-aiohttp=3.7.4=py38h2bbff1b_1
-astunparse=1.6.3=py_0
-async-timeout=3.0.1=py38haa95532_0
-attrs=20.3.0=pyhd3eb1b0_0
-blas=1.0=mkl
-blinker=1.4=py38haa95532_0
-brotlipy=0.7.0=py38h2bbff1b_1003
-ca-certificates=2021.1.19=haa95532_1
-cachetools=4.2.1=pyhd3eb1b0_0
-certifi=2020.12.5=py38haa95532_0
-cffi=1.14.5=py38hcd4344a_0
-chardet=3.0.4=py38haa95532_1003
-click=7.1.2=pyhd3eb1b0_0
-coverage=5.5=py38h2bbff1b_2
-cryptography=3.4.7=py38h71e12ea_0
-cython=0.29.22=py38hd77b12b_0
-faker=8.0.0=pyhd3eb1b0_0
-gast=0.4.0=py_0
-google-auth=1.28.1=pyhd3eb1b0_0
-google-auth-oauthlib=0.4.4=pyhd3eb1b0_0
-google-pasta=0.2.0=py_0
-grpcio=1.36.1=py38hc60d5dd_1
-h5py=2.10.0=py38h5e291fa_0
-hdf5=1.10.4=h7ebc959_0
-icc_rt=2019.0.0=h0cc432a_1
-idna=2.10=pyhd3eb1b0_0
-importlib-metadata=3.10.0=py38haa95532_0
-intel-openmp=2021.2.0=h57928b3_616
-joblib=1.0.1=pyhd8ed1ab_0
-keras=2.4.3=0
-keras-applications=1.0.8=py_1
-keras-base=2.4.3=py_0
-keras-preprocessing=1.1.2=pyhd3eb1b0_0
-libblas=3.9.0=8_mkl
-libcblas=3.9.0=8_mkl
-liblapack=3.9.0=8_mkl
-libprotobuf=3.14.0=h23ce68f_0
-markdown=3.3.4=py38haa95532_0
-mkl=2020.4=hb70f87d_311
-mkl-service=2.3.0=py38h196d8e1_0
-multidict=5.1.0=py38h2bbff1b_2
-numpy=1.20.2=py38h09042cb_0
-oauthlib=3.1.0=py_0
-openssl=1.1.1k=h2bbff1b_0
-opt_einsum=3.1.0=py_0
-pandas=1.2.3=py38hf11a4ad_0
-pip=21.0.1=py38haa95532_0
-protobuf=3.14.0=py38hd77b12b_1
-pyasn1=0.4.8=py_0
-pyasn1-modules=0.2.8=py_0
-pycparser=2.20=py_2
-pyjwt=1.7.1=py38_0
-pyopenssl=20.0.1=pyhd3eb1b0_1
-pyreadline=2.1=py38_1
-pysocks=1.7.1=py38haa95532_0
-python=3.8.8=hdbf39b2_4
-python-dateutil=2.8.1=pyhd3eb1b0_0
-python_abi=3.8=1_cp38
-pytz=2021.1=pyhd3eb1b0_0
-pyyaml=5.4.1=py38h2bbff1b_1
-requests=2.25.1=pyhd3eb1b0_0
-requests-oauthlib=1.3.0=py_0
-rsa=4.7.2=pyhd3eb1b0_1
-scikit-surprise=1.1.1=py38h1e00858_1
-scipy=1.6.2=py38h14eb087_0
-setuptools=52.0.0=py38haa95532_0
-six=1.15.0=pyh9f0ad1d_0
-sqlite=3.35.4=h2bbff1b_0
-tensorboard=2.4.0=pyhc547734_0
-tensorboard-plugin-wit=1.6.0=py_0
-tensorflow=2.3.0=mkl_py38h8c0d9a2_0
-tensorflow-base=2.3.0=eigen_py38h75a453f_0
-tensorflow-estimator=2.3.0=pyheb71bc4_0
-termcolor=1.1.0=py38haa95532_1
-text-unidecode=1.3=py_0
-typing-extensions=3.7.4.3=hd3eb1b0_0
-typing_extensions=3.7.4.3=pyh06a4308_0
-urllib3=1.26.4=pyhd3eb1b0_0
-vc=14.2=h21ff451_1
-vs2015_runtime=14.27.29016=h5e58377_2
-werkzeug=1.0.1=pyhd3eb1b0_0
-wheel=0.36.2=pyhd3eb1b0_0
-win_inet_pton=1.1.0=py38haa95532_0
-wincertstore=0.2=py38_0
-wrapt=1.12.1=py38he774522_1
-yaml=0.2.5=he774522_0
-yarl=1.6.3=py38h2bbff1b_0
-zipp=3.4.1=pyhd3eb1b0_0
-zlib=1.2.11=h62dcd97_4
-
-tensorflow~=2.3.0
-keras~=2.4.3
-faker~=8.0.0
-pandas~=1.2.3
-numpy~=1.20.2
+absl-py @ file:///C:/ci/absl-py_1615411229697/work
+aiohttp @ file:///C:/ci/aiohttp_1614361024229/work
+astunparse==1.6.3
+async-timeout==3.0.1
+attrs @ file:///tmp/build/80754af9/attrs_1604765588209/work
+blinker==1.4
+brotlipy==0.7.0
+cachetools @ file:///tmp/build/80754af9/cachetools_1611600262290/work
+certifi==2021.5.30
+cffi @ file:///C:/ci/cffi_1613247279197/work
+chardet @ file:///C:/ci/chardet_1605303225733/work
+click @ file:///home/linux1/recipes/ci/click_1610990599742/work
+coverage @ file:///C:/ci/coverage_1614615074147/work
+cryptography @ file:///C:/ci/cryptography_1616769344312/work
+cycler==0.10.0
+Cython @ file:///C:/ci/cython_1614014958194/work
+Faker @ file:///tmp/build/80754af9/faker_1617786690324/work
+gast @ file:///tmp/build/80754af9/gast_1597433534803/work
+google-auth @ file:///tmp/build/80754af9/google-auth_1617985782425/work
+google-auth-oauthlib @ file:///tmp/build/80754af9/google-auth-oauthlib_1617120569401/work
+google-pasta==0.2.0
+grpcio @ file:///C:/ci/grpcio_1614884412260/work
+h5py==2.10.0
+idna @ file:///home/linux1/recipes/ci/idna_1610986105248/work
+importlib-metadata @ file:///C:/ci/importlib-metadata_1617877484576/work
+joblib @ file:///home/conda/feedstock_root/build_artifacts/joblib_1612898609989/work
+Keras @ file:///tmp/build/80754af9/keras_split_1593112142734/work
+Keras-Applications @ file:///tmp/build/80754af9/keras-applications_1594366238411/work
+Keras-Preprocessing @ file:///tmp/build/80754af9/keras-preprocessing_1612283640596/work
+kiwisolver @ file:///C:/ci/kiwisolver_1612282606037/work
+Markdown @ file:///C:/ci/markdown_1614364121613/work
+matplotlib @ file:///C:/ci/matplotlib-suite_1613408055530/work
+mkl-service==2.3.0
+multidict @ file:///C:/ci/multidict_1607362065515/work
+numpy @ file:///D:/bld/numpy_1616933441329/work
+oauthlib==3.1.0
+olefile==0.46
+opt-einsum==3.1.0
+pandas @ file:///C:/ci/pandas_1614711443373/work
+Pillow @ file:///C:/ci/pillow_1617386341487/work
+protobuf==3.14.0
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+PyJWT==1.7.1
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
+pyparsing @ file:///home/linux1/recipes/ci/pyparsing_1610983426697/work
+pyreadline==2.1
+PySocks @ file:///C:/ci/pysocks_1605287845585/work
+python-dateutil @ file:///home/ktietz/src/ci/python-dateutil_1611928101742/work
+pytz @ file:///tmp/build/80754af9/pytz_1612215392582/work
+PyYAML==5.4.1
+requests @ file:///tmp/build/80754af9/requests_1608241421344/work
+requests-oauthlib==1.3.0
+rsa @ file:///tmp/build/80754af9/rsa_1614366226499/work
+scikit-learn @ file:///C:/ci/scikit-learn_1614446896245/work
+scikit-surprise==1.1.1
+scipy @ file:///C:/ci/scipy_1616703433439/work
+sip==4.19.13
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1590081179328/work
+tabulate==0.8.9
+tensorboard @ file:///home/builder/ktietz/aggregate/tensorflow_recipes/ci_te/tensorboard_1614593728657/work/tmp_pip_dir
+tensorboard-plugin-wit==1.6.0
+tensorflow==2.3.0
+tensorflow-estimator @ file:///tmp/build/80754af9/tensorflow-estimator_1599136169057/work/whl_temp/tensorflow_estimator-2.3.0-py2.py3-none-any.whl
+termcolor==1.1.0
+text-unidecode==1.3
+threadpoolctl @ file:///tmp/tmp9twdgx9k/threadpoolctl-2.1.0-py3-none-any.whl
+tornado @ file:///C:/ci/tornado_1606942392901/work
+typing-extensions @ file:///tmp/build/80754af9/typing_extensions_1611751222202/work
+urllib3 @ file:///tmp/build/80754af9/urllib3_1615837158687/work
+Werkzeug @ file:///home/ktietz/src/ci/werkzeug_1611932622770/work
+win-inet-pton @ file:///C:/ci/win_inet_pton_1605306167264/work
+wincertstore==0.2
+wrapt==1.12.1
+yarl @ file:///C:/ci/yarl_1606940076464/work
+zipp @ file:///tmp/build/80754af9/zipp_1615904174917/work

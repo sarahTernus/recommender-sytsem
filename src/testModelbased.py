@@ -10,7 +10,7 @@ if __name__ == '__main__':
     """CONFIGURE AND RUN MODEL BASED ALGORITHMS"""
     # generate Dataset for predictions -> choose path of desired Dataset
     reader = Reader(rating_scale=(1, 4))
-    df = pd.read_csv("datasets/explicit-dataset1-1k.csv")
+    df = pd.read_csv("datasets/dataset4-100k-movielens.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
 
     # set parameters
@@ -19,9 +19,9 @@ if __name__ == '__main__':
     # NMF as default with 15 factors, 50 epochs
     # SVD++ as default with 10 factors and 20 epochs
 
-    svd = SVD(n_factors=factors, n_epochs=epochs, verbose=False)
-    svdpp = SVDpp(verbose=False)
-    nmf = NMF(verbose=False)
+    svd = SVD(n_factors=factors, n_epochs=epochs, verbose=True)
+    svdpp = SVDpp(verbose=True)
+    nmf = NMF(verbose=True)
 
     """CROSS VALIDATION RMSE & MAE"""
     print("\n\n________________________________________________________________\n")

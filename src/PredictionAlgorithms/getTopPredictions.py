@@ -2,17 +2,14 @@ from collections import defaultdict
 
 
 def get_top_n(predictions, n=10):
-    """Return the top-N recommendation for each user from a set of predictions.
+    """
+    Return the top-N recommendation for each user from a set of predictions.
 
-    Args:
-        predictions(list of Prediction objects): The list of predictions, as
-            returned by the test method of an algorithm.
-        n(int): The number of recommendation to output for each user. Default
-            is 10.
-
-    Returns:
-        A dict where keys are user (raw) ids and values are lists of tuples:
-        [(raw item id, rating estimation), ...] of size n.
+    :param predictions: (list of Prediction objects) The list of predictions,
+            as returned by the test method of an algorithm.
+    :param n: The number of recommendation to output for each user. Default is 10.
+    :return A dict where keys are user (raw) ids and values are lists of tuples:
+            [(raw item id, rating estimation), ...] of size n.
     """
 
     # First map the predictions to each user.
