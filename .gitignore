@@ -1,4 +1,5 @@
 /venv/*
 /src/database/*
 */__pycache__/*
-/src/datasets/*
+/src/datasets/ml-datasets/*
+/src/datasets/location/*

@@ -118,8 +118,8 @@ def main():
     database = "../database/location.db"
     conn = create_connection(database)
     fill_table(conn)
+    conn.close()
 
 
 if __name__ == '__main__':
-    # df_rating_reduced = main()
     main()

@@ -7,7 +7,7 @@ def create_df():
     :return: df
     """
 
-    df = pd.read_csv("../datasets/ml-datasets/ratings-ml100k.csv")
+    df = pd.read_csv("../datasets/ml-datasets/ratings-ml1m.csv")
     df.columns = ['user_id', 'post_id', 'rating_value', 'timestamp']
 
     # to achieve normal distribution
@@ -35,10 +35,11 @@ def create_df():
 
     index = df.index
     number_of_rows = len(index)
-    print(number_of_rows)"""
+    print(number_of_rows)
+    """
 
     # generate dataset -> .csv file
-    df.to_csv("../datasets/test.csv")
+    df.to_csv("../datasets/ml-1m.csv")
 
     return df, number_of_rows
 

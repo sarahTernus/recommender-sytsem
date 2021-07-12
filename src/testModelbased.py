@@ -10,7 +10,7 @@ if __name__ == '__main__':
     """CONFIGURE AND RUN MODEL BASED ALGORITHMS"""
     # generate Dataset for predictions -> choose path of desired Dataset
     reader = Reader(rating_scale=(1, 4))
-    df = pd.read_csv("./datasets/explicit-dataset-1k.csv")
+    df = pd.read_csv("datasets/explicit-dataset1-1k.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
 
     # set parameters

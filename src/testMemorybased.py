@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     # generate Dataset for predictions -> choose path of desired Dataset
     reader = Reader(rating_scale=(1, 4))
-    df = pd.read_csv("./datasets/explicit-dataset-100k-movielens.csv")
+    df = pd.read_csv("datasets/explicit-dataset4-100k-movielens.csv")
     data = Dataset.load_from_df(df[['user_id', 'post_id', 'rating_value']], reader)
     # data = Dataset.load_builtin(name='ml-10m')
 

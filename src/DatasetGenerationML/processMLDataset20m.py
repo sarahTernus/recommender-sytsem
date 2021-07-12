@@ -39,7 +39,7 @@ def create_df():
     print(number_of_rows)
 
     # generate dataset -> .csv file
-    df.to_csv("../datasets/dataset-10m.csv")
+    df.to_csv("../datasets/ml-10m.csv")
 
     return df, number_of_rows
 

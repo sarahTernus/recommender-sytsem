@@ -35,10 +35,11 @@ def create_df():
 
     index = df.index
     number_of_rows = len(index)
-    print(number_of_rows)"""
+    print(number_of_rows)
+    """
 
     # generate dataset -> .csv file
-    df.to_csv("../datasets/ML-dataset-100k.csv")
+    df.to_csv("../datasets/ml-100k.csv")
 
     return df, number_of_rows
 

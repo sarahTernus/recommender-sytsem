@@ -5,7 +5,7 @@ def create_dataset_ex():
     """ create a explicit dataset from hybrid dataset
     :return: pandas dataframe
     """
-    df = pd.read_csv("../datasets/test.csv", index_col=0)
+    df = pd.read_csv("../datasets/location/dataset-location.csv", index_col=0)
     df = df[df.rating_value != 3]
     df = df.reset_index()
     df = df.drop(columns=['index'])

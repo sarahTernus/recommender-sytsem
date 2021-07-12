@@ -23,6 +23,14 @@ def create_connection(db_file):
 
 
 def calculate_distance(lat_u, long_u, lat_p, long_p):
+    """
+    Calculated the distance of user and post though their latitudes and longitudes
+    :param lat_u: latitude of the user
+    :param long_u: longitude of the user
+    :param lat_p: latitude of the post
+    :param long_p: longitude of the post
+    :return: distance of user and post
+    """
     R = 6373.0
 
     lat1 = math.radians(lat_u)
@@ -44,11 +52,10 @@ def calculate_distance(lat_u, long_u, lat_p, long_p):
 
 
 def sort_out_by_location(connection):
-    """Return the top-N recommendation for each user from a set of predictions.
-        Returns:
-            A dict where keys are user (raw) ids and values are lists of tuples:
-            [(raw item id, rating estimation), ...] of size n.
-        """
+    """
+    Creates a CVS where recommendations that are too far away are excluded
+    :param connection the database to get user and post coordinates
+    """
 
     df = pd.read_csv("../datasets/location/dataset-location.csv", index_col=0)
     # df = pd.read_sql_query("SELECT user_id, post_id FROM rating", connection)

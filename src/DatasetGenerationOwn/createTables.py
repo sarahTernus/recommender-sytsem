@@ -31,8 +31,8 @@ def create_table(conn, create_table_sql):
         print(e)
 
 
-def main():
-    database = "../database/location.db"
+def main(db):
+    database = db
 
     sql_create_user_table = """CREATE TABLE IF NOT EXISTS user (
                                         user_id integer PRIMARY KEY AUTOINCREMENT,
@@ -71,5 +71,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # df_rating_reduced = main()
-    main()
+    db_path = "../database/location.db"
+    main(db_path)
