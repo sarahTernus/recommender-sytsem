@@ -13,9 +13,11 @@ In diesem Repository befindet sich der Quellcode der Bachelorthesis "Evaluierung
 (Hybriden) Datensatz mit Standorteinbeziehung erstellen:
 1. Ordner _database_ unter _src_ erstellen
 2. Ordener _location_ unter _datasets_ erstellen
-3. Unter _DatasetGenerationOwn_ die Skirpte in folgender Reihenfolge ausführen:
+3. Unter _DatasetGenerationOwn_ die Skripte in folgender Reihenfolge ausführen (und ggf. Pfade anpassen):
     - createTables.py
     - fillTables.py
     - generateDatasets.py
+4. Dann unter _PredictionAlgorithms_ das Skript includeLocation (und ggf. Pfade anpassen): 
+
 
 
