@@ -39,7 +39,7 @@ Recommendation-Algorithmen testen:
 
 
 
-Quelle: 
+Unter Verwendung von: 
 Nicolas Hug. Surprise: A python library for recommender systems.Journal of Open Source Software, 5(52):2174, 2020
 
 
