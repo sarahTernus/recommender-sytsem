@@ -13,15 +13,17 @@ In diesem Repository befindet sich der Quellcode der Bachelorthesis "Evaluierung
 (Hybriden) Datensatz mit Standorteinbeziehung erstellen:
 1. Ordner _database_ unter _src_ erstellen
 2. Ordener _location_ unter _datasets_ erstellen
-3. Unter _DatasetGenerationOwn_ die Skripte in folgender Reihenfolge ausführen (und ggf. Pfade anpassen):
+3. Unter _DatasetGenerationOwn_ die Skripte in folgender Reihenfolge ausführen:
     - createTables.py
     - fillTables.py
     - generateDatasets.py
-4. Dann unter _PredictionAlgorithms_ das Skript includeLocation ausführen (und ggf. Pfade anpassen)
+4. Dann unter _PredictionAlgorithms_ das Skript includeLocation ausführen
 
 -> Unter Datasets ist nun eine reduzierte CSV-Datei mit der Standorteinbeziehung zu finden
 
-Empfehlung erzeugen:
+**(wenn eine Empfehlung ohne vorherige Datensatzerstellung generiert werden soll, müssen die Pfade zur verwendeten CSV Datei angepasst werden)**
+
+Empfehlung erzeugen: 
 1. Das Skript zur gewuenschten Recommendation-Technik unter _PredictionAlgorithms_ auswaehlen:
     - memorybased.py
     - modelbased.py
