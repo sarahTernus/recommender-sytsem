@@ -10,7 +10,7 @@ In diesem Repository befindet sich der Quellcode der Bachelorthesis "Evaluierung
 
 **Anleitung - Ausfuehren des Codes**
 
-(Hybriden) Datensatz mit Standorteinbeziehung erstellen:
+<ins>(Hybriden) Datensatz mit Standorteinbeziehung erstellen:</ins>
 1. Ordner _database_ unter _src_ erstellen
 2. Ordener _location_ unter _datasets_ erstellen
 3. Unter _DatasetGenerationOwn_ die Skripte in folgender Reihenfolge ausführen:
@@ -21,9 +21,11 @@ In diesem Repository befindet sich der Quellcode der Bachelorthesis "Evaluierung
 
 -> Unter Datasets ist nun eine reduzierte CSV-Datei mit der Standorteinbeziehung zu finden
 
-**(wenn eine Empfehlung ohne vorherige Datensatzerstellung generiert werden soll, müssen die Pfade zur verwendeten CSV Datei angepasst werden)**
+!! Wenn eine Empfehlung ohne vorherige Datensatzerstellung generiert werden soll, müssen die Pfade zur verwendeten CSV Datei angepasst werden!!
 
-Empfehlung erzeugen: 
+!! Wenn eine Datensatz mit den movielens Daten erzeugt werden soll müssen die Datensätze zunächst unter > https://grouplens.org/datasets/movielens/> heruntergeladen und unter datasets in einen Ordner "ml-datasets" gepackt werden!!
+
+<ins>Empfehlung erzeugen:</ins> 
 1. Das Skript zur gewuenschten Recommendation-Technik unter _PredictionAlgorithms_ auswaehlen:
     - memorybased.py
     - modelbased.py
@@ -33,7 +35,7 @@ Empfehlung erzeugen:
 
 -> Es werden in der Konsole für jeden Nutzer die besten 10 Recommendations ausgegeben
 
-Recommendation-Algorithmen testen:
+<ins>Recommendation-Algorithmen testen:</ins>
 1. Das gewuenschte Skript ausfueren zum Testen der Recommendation-Technik
     - testMemorybased.py
     - testModelbased.py
